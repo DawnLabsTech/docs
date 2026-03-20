@@ -32,8 +32,8 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 |---|---|
 | **Legal Entity** | CHAIN TEC LAB - FZCO |
 | **Location** | IFZA Business Park, DDP, Dubai Silicon Oasis, UAE |
-| **Assets Managed** | $150M+ |
 | **Website** | [dawnlabs.tech](https://dawnlabs.tech) |
+| **X (Twitter)** | [@dawnlabs00](https://x.com/dawnlabs00) |
 
 ## Team
 
