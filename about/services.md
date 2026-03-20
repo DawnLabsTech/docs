@@ -16,7 +16,7 @@ Direct delegation to Dawn Labs' validator with multiple staking options.
 | **LST Staking** | Liquid staking through **dawnSOL** on Sanctum — use across DeFi while earning staking rewards |
 | **Multiple Staking** | Coming soon — leveraged looping on both native and LST for amplified yield |
 
-**VIP Kickback**: Exclusive kickback plans for large-scale stakers. [Contact us](https://dawnlabs.tech/#contact) for details.
+**VIP Kickback**: Exclusive kickback plans for large-scale stakers. [Contact us](contact.md) for details.
 
 **Status: Live**
 
@@ -50,4 +50,4 @@ Onboarding, training, and growth strategy for enterprise validators.
 - Solana startups seeking validator infrastructure expertise
 - Institutional partners requiring compliance-ready operations
 
-**Status: Available** — [Contact us](https://dawnlabs.tech/#contact) to discuss your needs.
+**Status: Available** — [Contact us](contact.md) to discuss your needs.
