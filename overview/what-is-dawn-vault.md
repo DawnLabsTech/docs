@@ -4,7 +4,7 @@ Dawn Vault is a **validator-native yield vault** on Solana.
 
 ## The Concept
 
-Most DeFi yield vaults are built by teams that sit on top of protocols as users. Dawn Vault is different: it is built by infrastructure operators who run Solana's consensus layer. This means our yield strategies start at the infrastructure level and extend into DeFi — not the other way around.
+Most DeFi yield vaults are built by teams that sit on top of protocols as users. Dawn Vault is different: it is built by Solana validator operators. This means our yield strategies start at the infrastructure level and extend into DeFi — not the other way around.
 
 ```
 Traditional Vault:    DeFi Protocols → Yield
