@@ -43,7 +43,6 @@ Onboarding, training, and growth strategy for enterprise validators.
 #### What We Offer
 - **Validator Setup & Training** — Onboarding and training for enterprise validators entering the Solana network
 - **Business Development** — Strategic support for Solana-based business opportunities beyond validator operations
-- **In-House Operations Training** — Train internal personnel to avoid single-operator concentration risk
 
 #### Who It's For
 - Japanese enterprises entering the Solana ecosystem
