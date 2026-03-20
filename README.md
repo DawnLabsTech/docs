@@ -42,14 +42,6 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 | **Yutaro Nagumo** | CEO | [@SouthCloud0703](https://x.com/SouthCloud0703) |
 | **Toshiyuki Tega** | CTO | [@SoftgateJa](https://x.com/SoftgateJa) |
 
-## Quick Links
-
-- [Services Overview](about/services.md)
-- [Dawn Vault — USDC Vault Details](vaults/usdc-vault.md)
-- [Risk Disclosures](security/risk-disclosures.md)
-- [How to Deposit](getting-started/how-to-deposit.md)
-- [FAQ](resources/faq.md)
-
 ---
 
 > **Disclaimer**: Dawn Vault is an experimental DeFi product. Past performance does not guarantee future results. Please review our [Risk Disclosures](security/risk-disclosures.md) and [Disclaimer](legal/disclaimer.md) before depositing.
