@@ -7,6 +7,11 @@
 * [Validator](about/validator.md)
 * [Contact](about/contact.md)
 
+## Multiple Staking
+
+* [Kamino LST Multiple](multiple-staking/kamino-lst-multiple.md)
+* [Jupiter Native Stake Multiple](multiple-staking/jupiter-native-stake-multiple.md)
+
 ## Dawn Vault
 
 * [What is Dawn Vault?](overview/what-is-dawn-vault.md)
