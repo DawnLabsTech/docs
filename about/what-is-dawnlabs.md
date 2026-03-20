@@ -1,6 +1,30 @@
 # What is Dawn Labs?
 
-Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset Trusts), lending protocols, traditional finance firms, and high-net-worth individuals. We provide institutional-grade yield strategies and validator infrastructure services built on deep Solana expertise.
+**Your Solana Yield Partner**
+
+Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset Trusts), lending protocols, traditional finance firms, and high-net-worth individuals. We combine deep validator infrastructure expertise with DeFi yield optimization to deliver institutional-grade returns.
+
+## Services
+
+### Yield Strategies
+
+| Service | Description | Status |
+|---------|-------------|--------|
+| **[SOL Staking](services.md#sol-staking)** | Native Staking, LST Staking, Multiple Staking (0% commission + kickback for VIPs) | Live |
+| **[USDC Vault](services.md#usdc-vault)** | Automated yield vault combining lending aggregation with delta-neutral strategy (8–15%+ APY) | In Development |
+
+### Consulting
+
+| Service | Description | Status |
+|---------|-------------|--------|
+| **[Validator Growth](services.md#validator-growth)** | Onboarding, training, and growth strategy for enterprise validators | Available |
+
+## Why Dawn Labs?
+
+- **Validator-Native** — Our yield strategies start at the infrastructure layer, giving us structural alpha unavailable to pure DeFi aggregators
+- **$150M+ Assets Managed** — Proven track record with institutional-scale operations
+- **APAC-Based** — Bridging the Japanese market to the Solana ecosystem
+- **Compliance-Ready** — Navigate regulation and audit requirements together
 
 ## Company Profile
 
@@ -11,25 +35,6 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 | **Assets Managed** | $150M+ |
 | **Website** | [dawnlabs.tech](https://dawnlabs.tech) |
 
-## What We Do
-
-Dawn Labs operates at the intersection of Solana validator infrastructure and DeFi yield optimization. Our services are built on three capabilities:
-
-1. **Validator Infrastructure** — We operate a top-performing Solana validator with 99.9%+ uptime and 0% commission, providing the foundation for all our yield strategies
-2. **Yield Strategy Design** — Institutional-grade staking and DeFi strategies that maximize risk-adjusted returns
-3. **Consulting & Advisory** — Enterprise onboarding to Solana validator operations and ecosystem participation
-
-## Why Dawn Labs?
-
-### APAC-Based
-Operating from Japan across the Asia-Pacific region, we serve as a bridge between the Japanese market and the Solana ecosystem.
-
-### Compliance-Ready
-We help partners navigate regulation and audit requirements — a critical need for institutional participants entering DeFi.
-
-### Competitive Yield
-Optimized staking and DeFi strategies that leverage our validator infrastructure for structural advantages unavailable to pure DeFi aggregators.
-
 ## Team
 
 | Name | Role | Contact |
@@ -37,18 +42,14 @@ Optimized staking and DeFi strategies that leverage our validator infrastructure
 | **Yutaro Nagumo** | CEO | [@SouthCloud0703](https://x.com/SouthCloud0703) |
 | **Toshiyuki Tega** | CTO | [@SoftgateJa](https://x.com/SoftgateJa) |
 
-## Validator
+## Quick Links
 
-| | |
-|---|---|
-| **Identity** | `4k6wgP5WPBKQpsFGtzuXNrjcTE2fKWLj17nDvFeG5zSF` |
-| **Vote Account** | `8zuMRTXThoPTTPLLvaiKiJshLLCqGMt9BdRjjCL19xBc` |
-| **Commission** | 0% |
-| **MEV Commission** | 0% |
-| **Uptime** | 99.9%+ |
+- [Services Overview](services.md)
+- [Dawn Vault — USDC Vault Details](../vaults/usdc-vault.md)
+- [Risk Disclosures](../security/risk-disclosures.md)
+- [How to Deposit](../getting-started/how-to-deposit.md)
+- [FAQ](../resources/faq.md)
 
-## Contact
+---
 
-- **X (Twitter)**: [@dawnlabs00](https://x.com/dawnlabs00)
-- **Telegram**: [@SouthCloud0703](https://t.me/SouthCloud0703)
-- **Website**: [dawnlabs.tech](https://dawnlabs.tech)
+> **Disclaimer**: Dawn Vault is an experimental DeFi product. Past performance does not guarantee future results. Please review our [Risk Disclosures](../security/risk-disclosures.md) and [Disclaimer](../legal/disclaimer.md) before depositing.

@@ -6,6 +6,8 @@
 
 * [What is Dawn Labs?](about/what-is-dawnlabs.md)
 * [Services](about/services.md)
+* [Validator](about/validator.md)
+* [Contact](about/contact.md)
 
 ## Dawn Vault
 
