@@ -13,7 +13,7 @@ Direct delegation to Dawn Labs' validator with multiple staking options.
 | Option | Description |
 |--------|-------------|
 | **Native Staking** | Direct delegation with **0% commission** — the simplest way to earn staking rewards on Solana |
-| **LST Staking** | Liquid staking through **dawnSOL** on Sanctum — use across DeFi while earning staking rewards |
+| **LST Staking** | Liquid staking through **dawnSOL** on Sanctum with **0% commission** — use across DeFi while earning staking rewards |
 | **Multiple Staking** | Coming soon — leveraged looping on both native and LST for amplified yield |
 
 **VIP Kickback**: Exclusive kickback plans for large-scale stakers. [Contact us](contact.md) for details.
