@@ -9,8 +9,8 @@
 
 ## Multiple Staking
 
-* [Kamino LST Multiple](multiple-staking/kamino-lst-multiple.md)
 * [Jupiter Native Stake Multiple](multiple-staking/jupiter-native-stake-multiple.md)
+* [Kamino LST Multiple](multiple-staking/kamino-lst-multiple.md)
 
 ## Dawn Vault
 
