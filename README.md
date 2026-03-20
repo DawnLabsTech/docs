@@ -6,11 +6,18 @@ Dawn Labs is a Solana operations partner serving exchanges, DATs, lending protoc
 
 ## Services
 
+### Yield Strategies
+
 | Service | Description | Status |
 |---------|-------------|--------|
-| **[SOL Staking](about/services.md#1-sol-staking)** | Native staking (0% commission) and liquid staking via dawnSOL | Live |
-| **[Dawn Vault](about/services.md#2-dawn-vault)** | Automated yield vaults on Solana (USDC Vault: 8–15%+ APY) | USDC Vault Live |
-| **[Consulting](about/services.md#3-consulting-validator-growth)** | Enterprise validator onboarding and Solana ecosystem advisory | Available |
+| **[SOL Staking](about/services.md#sol-staking)** | Native Staking, LST Staking, Multiple Staking (0% commission + kickback for VIPs) | Live |
+| **[USDC Vault](about/services.md#usdc-vault)** | Automated yield vault combining lending aggregation with delta-neutral strategy (8–15%+ APY) | In Development |
+
+### Consulting
+
+| Service | Description | Status |
+|---------|-------------|--------|
+| **[Validator Growth](about/services.md#validator-growth)** | Onboarding, training, and growth strategy for enterprise validators | Available |
 
 ## Why Dawn Labs?
 
