@@ -2,7 +2,7 @@
 
 **Your Solana Yield Partner**
 
-Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset Trusts), lending protocols, traditional finance firms, and high-net-worth individuals. We combine deep validator infrastructure expertise with DeFi yield optimization to deliver institutional-grade returns.
+Dawn Labs is a **Solana operations partner** for exchanges, DAT (Digital Asset Treasury), lending protocols, traditional finance firms, and high-net-worth individuals. We combine deep validator infrastructure expertise with DeFi yield optimization to deliver institutional-grade returns.
 
 ## Services
 
