@@ -22,7 +22,7 @@ Direct delegation to Dawn Labs' validator with multiple staking options.
 
 ---
 
-### USDC Vault
+### Dawn Vault (USDC)
 
 Institutional-grade yield vault on Solana. Automated strategies combining lending aggregation with delta-neutral arbitrage, powered by our validator infrastructure.
 

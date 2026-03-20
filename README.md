@@ -11,7 +11,7 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 | Service | Description | Status |
 |---------|-------------|--------|
 | **[SOL Staking](about/services.md#sol-staking)** | Native Staking, LST Staking, Multiple Staking (0% commission + kickback for VIPs) | Live |
-| **[USDC Vault](about/services.md#usdc-vault)** | Automated yield vault combining lending aggregation with delta-neutral strategy (8–15%+ APY) | In Development |
+| **[Dawn Vault (USDC)](about/services.md#dawn-vault-usdc)** | Automated yield vault combining lending aggregation with delta-neutral strategy (8–15%+ APY) | In Development |
 
 ### Consulting
 
