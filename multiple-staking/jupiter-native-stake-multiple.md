@@ -1,61 +1,61 @@
 # Jupiter Native Stake Multiple
 
-Jupiter Lend を活用し、Dawn Labs バリデータへの Native Stake を担保として SOL を借入・再ステーキングすることで、通常のステーキングを上回る利回りを実現する Looping 戦略です。
+A looping strategy that uses Jupiter Lend to borrow SOL against natively staked SOL with the Dawn Labs validator, then restakes the borrowed SOL to amplify staking yield.
 
-## 仕組み
+## How It Works
 
-1. SOL を Dawn Labs バリデータにネイティブステーク
-2. ステーク済み SOL を nsToken 化（Solana 公式 Single Pool Program を利用）
-3. nsToken を Jupiter Lend Vault に担保として預入
-4. SOL を借入
-5. 借入した SOL を再びステーク（Looping）
-6. 上記を繰り返すことで最大約 7 倍の運用倍率を適用
+1. Stake SOL with the Dawn Labs validator
+2. Tokenize staked SOL into nsToken (via Solana's official Single Pool Program)
+3. Deposit nsToken as collateral on Jupiter Lend Vault
+4. Borrow SOL against the collateral
+5. Restake borrowed SOL with the Dawn Labs validator
+6. Repeat to achieve up to ~7x leverage
 
-ステーキング報酬は担保化後も継続的に獲得されます。ステーク状態を維持したまま借入を行う構造のためです。
+Staking rewards continue to accrue even after the staked SOL is used as collateral, since the stake state is maintained throughout the borrowing structure.
 
-## 特徴
+## Features
 
 | | |
 |---|---|
-| **担保** | ネイティブステーク済み SOL（nsToken） |
-| **借入資産** | SOL |
-| **最大レバレッジ** | 約 7 倍 |
-| **LST 価格変動リスク** | なし（ネイティブステークのため） |
-| **操作** | 現時点では手動（Jupiter 側で自動化機能を開発予定） |
+| **Collateral** | Natively staked SOL (nsToken) |
+| **Borrow Asset** | SOL |
+| **Max Leverage** | ~7x |
+| **LST Price Risk** | None (native stake, not LST) |
+| **Operation** | Manual (Jupiter is developing automated management) |
 
-- ネイティブステークのため LST 価格変動リスクがない
-- 担保と借入が同一資産（SOL）のため、SOL の USD 建て価格変動による清算は発生しない
-- 借入金利は利用率に応じた変動金利モデルを採用し、急激な金利変動が抑制される
+- No LST price deviation risk since native stake is used directly
+- Collateral and borrowed asset are both SOL — no USD price-driven liquidation risk
+- Borrow rate follows a utilization-based variable rate model, dampening sudden rate spikes
 
-## リスク
+## Risks
 
-### 借入金利変動リスク
+### Borrow Rate Volatility
 
-**リスク**: SOL の借入金利は市場状況により変動します。借入金利がステーキング利回りを上回った場合、利回りの低下が生じます。長期間継続した場合、担保率が清算ラインを下回り元本毀損につながる可能性があります。
+**Risk**: SOL borrow rates fluctuate with market conditions. If the borrow rate exceeds staking yield, returns decrease. Prolonged periods could push the collateral ratio below the liquidation threshold, resulting in principal loss.
 
-**軽減要因**: Jupiter の SOL 借入市場は十分な流動性を有しており、通常時の金利は安定的に推移しています。また SOL → SOL の借入構造であり、清算が発生しうるのは借入金利がステーキング利回りを長期間大幅に上回った場合に限られますが、過去にそのような事態は発生していません。
+**Mitigation**: Jupiter's SOL borrow market has deep liquidity and rates are generally stable. Since this is a SOL-to-SOL borrow structure, liquidation can only occur if borrow rates significantly exceed staking yield for an extended period — a scenario that has never occurred historically.
 
-### スマートコントラクトリスク
+### Smart Contract Risk
 
-**リスク**: DeFi プロトコルのスマートコントラクトに脆弱性が存在する可能性があります。
+**Risk**: Vulnerabilities may exist in the DeFi protocol's smart contracts.
 
-**軽減要因**: Jupiter は複数の独立した監査法人によるセキュリティ監査を完了しており、Solana エコシステム最大級のプロトコル（500 以上のプロジェクトと統合）として長期間の運用実績があります。バグバウンティプログラムも継続的に運営しています。
+**Mitigation**: Jupiter has completed multiple independent security audits and is one of the largest protocols in the Solana ecosystem (integrated with 500+ projects) with a long operational track record. A bug bounty program is continuously maintained.
 
-**監査実績**:
-- OtterSec — 4 回の監査を実施（最新: 2025 年 11 月）
-- Offside Labs — v6 監査（2025 年 10 月、2024 年 4 月）、Oracle & Flashloan 監査（2025 年 10 月）
-- Zenith — 2025 年 6 月〜7 月実施、全指摘事項を解決済み
-- Sec3 — v3 監査
-- Code4rena — 競争的監査コンテスト（$107K 規模、2026 年 2 月〜3 月）
+**Audit History**:
+- OtterSec — 4 audits (latest: November 2025)
+- Offside Labs — v6 audit (October 2025, April 2024), Oracle & Flashloan audit (October 2025)
+- Zenith — June–July 2025, all findings resolved
+- Sec3 — v3 audit
+- Code4rena — Competitive audit contest ($107K scope, February–March 2026)
 
-### 流動性リスク
+### Liquidity Risk
 
-**リスク**: ネイティブステークの解除にはクールダウン期間（約 2〜3 日）が必要です。急な資金需要に対応できない場合があります。
+**Risk**: Unstaking native SOL requires a cooldown period (~2–3 days). Immediate liquidity needs may not be met.
 
-**軽減要因**: Solana のクールダウン期間は他のチェーン（Ethereum: 約数日〜数週間）と比較して短期です。
+**Mitigation**: Solana's cooldown period is short compared to other chains (Ethereum: several days to weeks).
 
-### 手動管理リスク
+### Manual Management Risk
 
-**リスク**: 現時点では Looping は手動操作のため、ポジション管理の負担があります。
+**Risk**: Looping currently requires manual operations, adding position management overhead.
 
-**軽減要因**: Dawn Labs がポジション構築・管理のサポートを提供します。Jupiter では Looping の自動管理機能の開発が予定されており、将来的には運用負荷の大幅な軽減が見込まれます。
+**Mitigation**: Dawn Labs provides support for position setup and management. Jupiter has planned development of automated looping management features, which will significantly reduce operational burden.

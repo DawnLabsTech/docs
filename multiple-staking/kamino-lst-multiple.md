@@ -1,82 +1,82 @@
 # Kamino LST Multiple
 
-Kamino（K-Lend）および Sanctum と連携し、Dawn Labs 発行の LST（dawnSOL）を活用して Looping 運用を行う戦略です。Kamino の Multiply 機能によりワンクリックでレバレッジポジションを構築できます。
+A looping strategy that uses Kamino (K-Lend) and Sanctum to leverage Dawn Labs' LST (dawnSOL) for amplified staking yield. Kamino's Multiply feature enables one-click leveraged position construction.
 
-## 仕組み
+## How It Works
 
-1. SOL を dawnSOL にステーク（Sanctum 経由）
-2. dawnSOL を Kamino に担保として預入
-3. SOL を借入し、再度 dawnSOL に変換して預入（Looping）
-4. Multiply 機能により最大約 7 倍の運用倍率が可能
+1. Stake SOL into dawnSOL (via Sanctum)
+2. Deposit dawnSOL as collateral on Kamino
+3. Borrow SOL, convert back to dawnSOL, and deposit again (Looping)
+4. Multiply feature enables up to ~7x leverage
 
-Kamino の Multiply 機能は Flash Loan を活用し、1 トランザクション内でレバレッジポジションを構築します:
+Kamino's Multiply feature uses Flash Loans to build the entire leveraged position in a single transaction:
 
-1. Flash Loan で SOL を無担保借入（手数料: 0.001%）
-2. 借入 SOL を dawnSOL に変換（Sanctum 経由）
-3. dawnSOL を K-Lend に担保として預入
-4. 新たな担保に対して SOL を借入
-5. 借入 SOL で Flash Loan を返済 → ポジション完成
+1. Flash Loan borrows SOL without collateral (fee: 0.001%)
+2. Convert borrowed SOL to dawnSOL (via Sanctum)
+3. Deposit dawnSOL as collateral on K-Lend
+4. Borrow SOL against the new collateral
+5. Repay Flash Loan with borrowed SOL — position complete
 
-UI 上はワンクリックで上記すべてが自動実行されます。
+The entire process executes with one click on the UI.
 
-## 特徴
+## Features
 
 | | |
 |---|---|
-| **担保** | dawnSOL（LST） |
-| **借入資産** | SOL |
-| **最大レバレッジ** | 約 10 倍（eMode 適用時） |
-| **操作** | ワンクリック（Kamino Multiply） |
+| **Collateral** | dawnSOL (LST) |
+| **Borrow Asset** | SOL |
+| **Max Leverage** | ~10x (with eMode) |
+| **Operation** | One-click (Kamino Multiply) |
 
-- Kamino の Multiply 機能によりワンクリックでレバレッジポジションを構築可能
-- LST として流動性を保持したまま運用できる
-- Kamino のリスク管理機能（自動デレバレッジ等）を活用可能
+- One-click leveraged position construction via Kamino Multiply
+- Maintain liquidity as an LST while earning amplified yield
+- Built-in risk management features (auto-deleverage, etc.)
 
-### eMode（Elevation Mode）
+### eMode (Elevation Mode)
 
-eMode は、価格が連動する資産ペア（SOL と LST）間で LTV 上限を引き上げる機能です。
+eMode raises the LTV cap for correlated asset pairs (SOL and LST), enabling higher leverage.
 
-| モード | LTV 上限 | 最大レバレッジ |
-|--------|----------|----------------|
-| 通常モード | 75% | 約 4 倍 |
-| eMode 適用 | 90% | 約 10 倍 |
+| Mode | LTV Cap | Max Leverage |
+|------|---------|--------------|
+| Standard | 75% | ~4x |
+| eMode | 90% | ~10x |
 
-SOL と LST は本質的に同一資産であり価格が連動するため、eMode の適用は合理的です。
+Since SOL and LST are fundamentally the same asset with correlated pricing, eMode application is justified.
 
-## リスク
+## Risks
 
-### 借入金利変動リスク
+### Borrow Rate Volatility
 
-**リスク**: SOL の借入金利は市場状況により変動します。借入金利がステーキング利回りを上回った場合、利回りの低下が生じます。長期間継続した場合、担保率が清算ラインを下回り元本毀損につながる可能性があります。
+**Risk**: SOL borrow rates fluctuate with market conditions. If the borrow rate exceeds staking yield, returns decrease. Prolonged periods could push the collateral ratio below the liquidation threshold, resulting in principal loss.
 
-**軽減要因**: Kamino の SOL 借入市場は十分な流動性を有しており、通常時の金利は安定的に推移しています。また SOL → SOL の借入構造であり、清算が発生しうるのは借入金利がステーキング利回りを長期間大幅に上回った場合に限られますが、過去にそのような事態は発生していません。
+**Mitigation**: Kamino's SOL borrow market has deep liquidity and rates are generally stable. Since this is a SOL-to-SOL borrow structure, liquidation can only occur if borrow rates significantly exceed staking yield for an extended period — a scenario that has never occurred historically.
 
-### スマートコントラクトリスク
+### Smart Contract Risk
 
-**リスク**: DeFi プロトコルのスマートコントラクトに脆弱性が存在する可能性があります。
+**Risk**: Vulnerabilities may exist in the DeFi protocol's smart contracts.
 
-**軽減要因**: Kamino は複数の独立した監査法人によるセキュリティ監査を完了しており、Solana エコシステムにおける主要プロトコルとして長期間の運用実績があります。バグバウンティプログラムも継続的に運営しています。
+**Mitigation**: Kamino has completed multiple independent security audits and is a major protocol in the Solana ecosystem with a long operational track record. A bug bounty program is continuously maintained.
 
-**監査実績（K-Lend）**:
-- Certora — 形式検証による数学的安全性の証明
-- OtterSec — Solana 特化のセキュリティ監査
-- Sec3 — Solana プログラムの自動セキュリティ解析
-- Ackee Blockchain — ファズテストによるセキュリティ検証
-- OSec — 形式検証
-- RX Auditors — セキュリティ監査
+**Audit History (K-Lend)**:
+- Certora — Formal verification proving mathematical safety
+- OtterSec — Solana-specialized security audit
+- Sec3 — Automated Solana program security analysis
+- Ackee Blockchain — Fuzz testing security verification
+- OSec — Formal verification
+- RX Auditors — Security audit
 
-**バグバウンティ**: Immunefi にて最大 $1.5M の報奨金プログラムを運営
+**Bug Bounty**: Up to $1.5M reward program on Immunefi
 
-### LST Depeg リスク
+### LST Depeg Risk
 
-**リスク**: dawnSOL の市場価格が理論価格から乖離（depeg）した場合、担保価値が低下し清算リスクが高まります。
+**Risk**: If dawnSOL's market price deviates from its theoretical price (depeg), collateral value drops and liquidation risk increases.
 
-**軽減要因**: dawnSOL は Sanctum を通じて発行され、いつでも理論価格で SOL に償還可能です。Sanctum は Solana 最大級の LST インフラプロバイダーとして安定した運用実績を有しています。また、Kamino の自動デレバレッジ機能により、担保率低下時のリスク軽減が図られています。
+**Mitigation**: dawnSOL is issued through Sanctum and can be redeemed for SOL at theoretical price at any time. Sanctum is one of Solana's largest LST infrastructure providers with a stable operational track record. Kamino's auto-deleverage feature further mitigates risk during collateral ratio deterioration.
 
-## リスク管理メカニズム
+## Risk Management
 
-Kamino は複数のリスク管理機能を備えています:
+Kamino provides multiple built-in risk management features:
 
-- **自動デレバレッジ**: LTV が悪化した場合、担保・負債を自動的に解消して安全水準を維持。ユーザーの手動介入なくポジションの健全性が保たれます
-- **段階的清算**: LTV が閾値を超過した場合でも、担保の約 2% のみが清算対象。一般的なプロトコルの全額清算と異なり、元本への影響を最小限に抑えます
-- **KRAF（Kamino Risk Assessment Framework）**: ボラティリティ測定・ストレステスト・リアルタイムモニタリングを実施する包括的なリスク評価フレームワーク
+- **Auto-Deleverage**: Automatically unwinds collateral and debt when LTV deteriorates, maintaining safe levels without manual intervention
+- **Partial Liquidation**: When LTV exceeds the threshold, only ~2% of collateral is liquidated — unlike full liquidation in typical protocols, minimizing impact on principal
+- **KRAF (Kamino Risk Assessment Framework)**: Comprehensive risk assessment framework performing volatility measurement, stress testing, and real-time monitoring
