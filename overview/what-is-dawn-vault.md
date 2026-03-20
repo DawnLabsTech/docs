@@ -33,7 +33,7 @@ This **infrastructure-level alpha** is the structural advantage that sets Dawn V
 
 ## Current Vault
 
-- **[USDC Vault](../vaults/usdc-vault.md)** (Live): USDC lending + SOL delta-neutral strategy targeting 8–15%+ APY
+- **[USDC Vault](../vaults/usdc-vault.md)** (In Development): USDC lending + SOL delta-neutral strategy targeting 8–15%+ APY
 
 ## Built on Proven Infrastructure
 
