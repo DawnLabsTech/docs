@@ -1,10 +1,8 @@
 # Table of contents
 
-* [Welcome](README.md)
+* [What is Dawn Labs?](README.md)
 
 ## About Dawn Labs
-
-* [What is Dawn Labs?](about/what-is-dawnlabs.md)
 * [Services](about/services.md)
 * [Validator](about/validator.md)
 * [Contact](about/contact.md)
