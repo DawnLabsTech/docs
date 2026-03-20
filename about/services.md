@@ -42,6 +42,7 @@ Onboarding, training, and growth strategy for enterprise validators.
 
 #### What We Offer
 - **Validator Setup & Training** — Onboarding and training for enterprise validators entering the Solana network
+- **Growth Strategy** — Stake pool delegation acquisition, performance optimization, and ongoing advisory based on the latest Solana ecosystem developments
 - **Business Development** — Strategic support for Solana-based business opportunities beyond validator operations
 
 #### Who It's For
