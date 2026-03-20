@@ -14,9 +14,7 @@ Direct delegation to Dawn Labs' validator with multiple staking options.
 |--------|-------------|
 | **[Native Staking](validator.md)** | Direct delegation with **0% commission** — the simplest way to earn staking rewards on Solana |
 | **[LST Staking](https://app.sanctum.so/stake/dawnSOL)** | Liquid staking through **dawnSOL** on Sanctum with **0% commission** — use across DeFi while earning staking rewards |
-| **Multiple Staking** | Coming soon — leveraged looping for amplified yield |
-| | - [Kamino LST Multiple](../multiple-staking/kamino-lst-multiple.md) |
-| | - [Jupiter Native Stake Multiple](../multiple-staking/jupiter-native-stake-multiple.md) |
+| **Multiple Staking** | Coming soon — leveraged looping for amplified yield <br> - [Kamino LST Multiple](../multiple-staking/kamino-lst-multiple.md) <br> - [Jupiter Native Stake Multiple](../multiple-staking/jupiter-native-stake-multiple.md) |
 
 **VIP Kickback**: Exclusive kickback plans for large-scale stakers. [Contact us](contact.md) for details.
 
