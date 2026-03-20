@@ -18,7 +18,9 @@ Direct delegation to Dawn Labs' validator with multiple staking options.
 
 **VIP Kickback**: Exclusive kickback plans for large-scale stakers. [Contact us](contact.md) for details.
 
+{% hint style="success" %}
 **Status: Live**
+{% endhint %}
 
 ---
 
@@ -30,7 +32,9 @@ Institutional-grade yield vault on Solana. Automated strategies combining lendin
 - Non-custodial, on-chain smart contract design
 - Full yield transparency and proof-based reporting
 
+{% hint style="warning" %}
 **Status: In Development** — See [Dawn Vault Documentation](../overview/what-is-dawn-vault.md) for details.
+{% endhint %}
 
 ---
 
@@ -50,4 +54,6 @@ Onboarding, training, and growth strategy for enterprise validators.
 - Solana startups seeking validator infrastructure expertise
 - Institutional partners requiring compliance-ready operations
 
+{% hint style="success" %}
 **Status: Available** — [Contact us](contact.md) to discuss your needs.
+{% endhint %}
