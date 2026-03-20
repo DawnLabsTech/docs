@@ -41,12 +41,12 @@ Staking rewards continue to accrue even after the staked SOL is used as collater
 
 **Mitigation**: Jupiter has completed multiple independent security audits and is one of the largest protocols in the Solana ecosystem (integrated with 500+ projects) with a long operational track record. A bug bounty program is continuously maintained.
 
-**Audit History**:
-- OtterSec — 4 audits (latest: November 2025)
-- Offside Labs — v6 audit (October 2025, April 2024), Oracle & Flashloan audit (October 2025)
-- Zenith — June–July 2025, all findings resolved
-- Sec3 — v3 audit
-- Code4rena — Competitive audit contest ($107K scope, February–March 2026)
+**Audit History** ([full list](https://dev.jup.ag/resources/audits)):
+- [OtterSec](https://dev.jup.ag/resources/audits) — 4 audits (latest: November 2025)
+- [Offside Labs](https://dev.jup.ag/resources/audits) — v6 audit (October 2025, April 2024), Oracle & Flashloan audit (October 2025)
+- [Zenith](https://dev.jup.ag/resources/audits) — June–July 2025, all findings resolved
+- [Sec3](https://dev.jup.ag/resources/audits) — v3 audit
+- [Code4rena](https://code4rena.com/audits/2026-02-jupiter-lend) — Competitive audit contest ($107K scope, February–March 2026)
 
 ### Liquidity Risk
 

@@ -57,15 +57,15 @@ Since SOL and LST are fundamentally the same asset with correlated pricing, eMod
 
 **Mitigation**: Kamino has completed multiple independent security audits and is a major protocol in the Solana ecosystem with a long operational track record. A bug bounty program is continuously maintained.
 
-**Audit History (K-Lend)**:
-- Certora — Formal verification proving mathematical safety
+**Audit History (K-Lend)** ([full list](https://github.com/Kamino-Finance/audits)):
+- [Certora](https://github.com/Kamino-Finance/audits/blob/master/kamino_lend_certora.pdf) — Formal verification proving mathematical safety
 - OtterSec — Solana-specialized security audit
-- Sec3 — Automated Solana program security analysis
+- [Sec3](https://github.com/Kamino-Finance/audits/blob/master/kamino_klend_sec3.pdf) — Automated Solana program security analysis
 - Ackee Blockchain — Fuzz testing security verification
-- OSec — Formal verification
+- [OSec](https://github.com/Kamino-Finance/audits/blob/master/kamino_lend_osec_formal_verification.pdf) — Formal verification
 - RX Auditors — Security audit
 
-**Bug Bounty**: Up to $1.5M reward program on Immunefi
+**Bug Bounty**: Up to [$1.5M reward program on Immunefi](https://immunefi.com/bug-bounty/kamino)
 
 ### LST Depeg Risk
 
