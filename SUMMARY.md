@@ -2,23 +2,22 @@
 
 * [Welcome](README.md)
 
-## Overview
+## About Dawn Labs
+
+* [What is Dawn Labs?](about/what-is-dawnlabs.md)
+* [Services](about/services.md)
+
+## Dawn Vault
 
 * [What is Dawn Vault?](overview/what-is-dawn-vault.md)
 * [Why Dawn Vault?](overview/why-dawn-vault.md)
 * [Architecture](overview/architecture.md)
-
-## Vaults
-
 * [USDC Vault](vaults/usdc-vault.md)
-* [SOL Vault](vaults/sol-vault.md)
-* [BTC Vault](vaults/btc-vault.md)
 
 ## Strategies
 
 * [Lending Aggregation](strategies/lending-aggregation.md)
 * [Delta-Neutral Strategy](strategies/delta-neutral.md)
-* [LST Loop Strategy](strategies/lst-loop.md)
 * [Dynamic Allocation](strategies/dynamic-allocation.md)
 
 ## Transparency

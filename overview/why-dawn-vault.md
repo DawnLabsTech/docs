@@ -7,8 +7,6 @@ Dawn Vault's competitive advantage rests on three pillars that are difficult to 
 Unlike pure DeFi vaults that compete for the same on-chain yield, Dawn Vault generates alpha from the infrastructure layer:
 
 - **dawnSOL Staking Rewards**: The long leg of our delta-neutral strategy is held as dawnSOL (our custom LST), automatically earning ~7% staking rewards on top of funding rate income
-- **Kamino LST Loop**: dawnSOL collateral enables leveraged yield strategies
-- **Jupiter Native Stake**: Staking assets used directly as collateral for maximum capital efficiency
 - **Dynamic Two-Layer Design**: Base layer (always-on) + Alpha layer (conditional) ensures yield never drops to zero
 
 > Other vaults rely on lending and funding rates alone. Dawn Vault stacks yield from the infrastructure layer up.

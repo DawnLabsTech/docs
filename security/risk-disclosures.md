@@ -39,17 +39,13 @@ The delta-neutral strategy depends on positive SOL funding rates. When funding r
 
 ### 3. Liquidation Risk
 
-**Severity: Low (USDC Vault) / Medium (SOL & BTC Vaults)**
+**Severity: Low**
 
-- **USDC Vault DN**: 1x leverage (margin = position size) — liquidation risk is effectively zero
-- **SOL Vault LST Loop**: Leveraged positions can be liquidated if LTV thresholds are breached
-- **BTC Vault**: Collateral LTV management required; BTC price drops increase liquidation risk
+The USDC Vault uses 1x leverage (margin = position size) — liquidation risk is effectively zero.
 
 **Mitigations:**
-- No leverage in DN strategy (USDC Vault)
-- Conservative LTV targets (50% for BTC Vault vs. 90% liquidation threshold)
-- 4-stage deleverage protocol for BTC Vault
-- Continuous LTV monitoring with automated responses
+- No leverage in DN strategy
+- Position sizing ensures margin always equals notional exposure
 
 ### 4. Exchange / Counterparty Risk
 
@@ -116,7 +112,6 @@ Dawn Vault composes multiple protocols. A failure in any one protocol could casc
 
 - Lending protocol exploit → loss of deposited assets
 - DEX exploit → loss during swaps
-- LST depeg → collateral value decline
 
 **Mitigations:**
 - Protocol diversification across lending venues
@@ -154,16 +149,16 @@ As a Solana-native product, Dawn Vault is subject to Solana network risks:
 
 ## Summary Risk Matrix
 
-| Risk | USDC Vault | SOL Vault | BTC Vault |
-|------|-----------|-----------|-----------|
-| Smart Contract | Medium | Medium | Medium |
-| Market / FR | Medium | Low | Medium |
-| Liquidation | **Low** | Medium | **High** |
-| Exchange | Medium | Low | Medium |
-| Oracle | Low | Low–Med | Low–Med |
-| Operational | Low–Med | Low–Med | Medium |
-| Liquidity | Low | Low | Low–Med |
-| Protocol | Low–Med | Low–Med | Medium |
-| Regulatory | Unknown | Unknown | Unknown |
+| Risk | USDC Vault |
+|------|-----------|
+| Smart Contract | Medium |
+| Market / FR | Medium |
+| Liquidation | **Low** |
+| Exchange | Medium |
+| Oracle | Low–Med |
+| Operational | Low–Med |
+| Liquidity | Low |
+| Protocol | Low–Med |
+| Regulatory | Unknown |
 
 > **Please do not deposit more than you can afford to lose.** Past performance does not guarantee future results. See our [Disclaimer](../legal/disclaimer.md) for important legal information.

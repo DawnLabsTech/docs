@@ -1,38 +1,29 @@
-# Dawn Vault
+# Dawn Labs
 
-**Validator-Native Yield Vaults on Solana**
+**Your Solana Yield Partner**
 
-Dawn Vault is a suite of yield-generating vaults built and operated by Dawn Labs — an active Solana validator operator. By combining deep protocol expertise with proprietary validator infrastructure, Dawn Vault delivers sustainable, risk-adjusted yield that is difficult to replicate.
+Dawn Labs is a Solana operations partner serving exchanges, DATs, lending protocols, traditional finance firms, and high-net-worth individuals. We combine deep validator infrastructure expertise with DeFi yield optimization to deliver institutional-grade returns.
 
-## Why Validator-Native?
+## Services
 
-Unlike traditional DeFi yield aggregators, Dawn Vault is built by operators who run Solana validator infrastructure. This gives us:
+| Service | Description | Status |
+|---------|-------------|--------|
+| **[SOL Staking](about/services.md#1-sol-staking)** | Native staking (0% commission) and liquid staking via dawnSOL | Live |
+| **[Dawn Vault](about/services.md#2-dawn-vault)** | Automated yield vaults on Solana (USDC Vault: 8–15%+ APY) | USDC Vault Live |
+| **[Consulting](about/services.md#3-consulting-validator-growth)** | Enterprise validator onboarding and Solana ecosystem advisory | Available |
 
-- **Proprietary Alpha** — Access to validator-exclusive yield sources such as custom LST staking rewards (dawnSOL) and priority fee optimization
-- **Operational Trust** — Proven track record of reliable infrastructure operation with 99.9%+ uptime
-- **Deep Protocol Knowledge** — First-hand understanding of Solana's consensus mechanism, MEV landscape, and DeFi composability
+## Why Dawn Labs?
 
-## Vault Lineup
-
-| Vault | Asset | Status | Target APY |
-|-------|-------|--------|------------|
-| **USDC Vault** | USDC | **Live** | 8–15%+ |
-| **SOL Vault** | SOL | Coming Soon | TBD |
-| **BTC Vault** | BTC | Coming Soon | TBD |
-
-## How It Works
-
-Dawn Vault employs a **two-layer architecture** for yield generation:
-
-1. **Base Layer** — Stable yield from lending protocol aggregation (Kamino, Drift, Jupiter Lend)
-2. **Alpha Layer** — Enhanced yield from delta-neutral strategies powered by funding rate arbitrage and validator-native staking rewards
-
-The allocation between layers is dynamically adjusted based on market conditions, ensuring optimal risk-adjusted returns.
+- **Validator-Native** — Our yield strategies start at the infrastructure layer, giving us structural alpha unavailable to pure DeFi aggregators
+- **$150M+ Assets Managed** — Proven track record with institutional-scale operations
+- **APAC-Based** — Bridging the Japanese market to the Solana ecosystem
+- **Compliance-Ready** — Navigate regulation and audit requirements together
 
 ## Quick Links
 
-- [What is Dawn Vault?](overview/what-is-dawn-vault.md)
-- [USDC Vault Details](vaults/usdc-vault.md)
+- [What is Dawn Labs?](about/what-is-dawnlabs.md)
+- [Services Overview](about/services.md)
+- [Dawn Vault — USDC Vault Details](vaults/usdc-vault.md)
 - [Risk Disclosures](security/risk-disclosures.md)
 - [How to Deposit](getting-started/how-to-deposit.md)
 - [FAQ](resources/faq.md)

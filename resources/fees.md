@@ -75,10 +75,6 @@ In addition to fees, the vault implements **Locked Profit** (Yearn V2 model):
 - This prevents frontrunning: you can't deposit right before a profit event and withdraw immediately after
 - The mechanism protects long-term depositors from value extraction by short-term traders
 
-## Validator Commission
-
-For the SOL Vault (Phase 2), Dawn Labs earns validator commission as an additional revenue stream. This commission is a natural part of validator operations and **does not reduce depositor yield** — it is an independent income source that also funds the [Yield Smoothing Reserve](../transparency/yield-smoothing-reserve.md).
-
 ## Fee Transparency
 
 All fee parameters are set on-chain and visible to anyone:

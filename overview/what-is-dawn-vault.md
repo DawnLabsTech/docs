@@ -1,6 +1,6 @@
 # What is Dawn Vault?
 
-Dawn Vault is a **validator-native yield vault** on Solana — designed, built, and operated by [Dawn Labs](https://dawnlabs.xyz), an active Solana validator operator.
+Dawn Vault is a **validator-native yield vault** on Solana — designed, built, and operated by [Dawn Labs](https://dawnlabs.tech), an active Solana validator operator.
 
 ## The Concept
 
@@ -31,13 +31,9 @@ This **infrastructure-level alpha** is the structural advantage that sets Dawn V
 | **Skin in the Game** | Dawn Labs' own capital is deployed under the same conditions as depositors |
 | **Capacity Management** | TVL caps to prevent alpha dilution — quality over quantity |
 
-## Vault Lineup
+## Current Vault
 
-Dawn Vault offers multiple vaults, each designed for a specific asset:
-
-- **[USDC Vault](../vaults/usdc-vault.md)** (Phase 1 — Live): USDC lending + SOL delta-neutral strategy
-- **[SOL Vault](../vaults/sol-vault.md)** (Phase 2 — Coming Soon): Validator staking + LST loop strategy
-- **[BTC Vault](../vaults/btc-vault.md)** (Phase 3 — Coming Soon): cbBTC lending + collateralized delta-neutral
+- **[USDC Vault](../vaults/usdc-vault.md)** (Live): USDC lending + SOL delta-neutral strategy targeting 8–15%+ APY
 
 ## Built on Proven Infrastructure
 

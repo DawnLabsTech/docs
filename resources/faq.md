@@ -16,7 +16,7 @@ No. All assets are held in on-chain PDA (Program Derived Account) accounts contr
 
 ### Who operates Dawn Vault?
 
-Dawn Labs, a Solana validator operator based in Japan. We run validator infrastructure and operate the vault strategy with our own capital alongside depositors.
+[Dawn Labs](../about/what-is-dawnlabs.md), a Solana operations partner based in APAC. We run validator infrastructure and operate the vault strategy with our own capital alongside depositors.
 
 ## Yield
 
@@ -45,7 +45,7 @@ Yield auto-compounds into the vault. There is no claiming or harvesting step. Yo
 
 ### What assets can I deposit?
 
-Currently, only **USDC** (SPL token on Solana) is supported. SOL and BTC vaults are planned for future phases.
+Currently, **USDC** (SPL token on Solana) is supported via the USDC Vault.
 
 ### Is there a minimum deposit?
 

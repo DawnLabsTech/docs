@@ -23,13 +23,12 @@ graph TB
     EXEC --> VP[Update Vault Positions]
 ```
 
-### Decision Inputs by Vault
+### Decision Inputs
 
-| Vault | Primary Signal | Secondary Signals |
-|-------|---------------|-------------------|
-| **USDC Vault** | SOL Funding Rate | Lending rates across protocols |
-| **SOL Vault** | LST yield − SOL borrow rate spread | Staking APY, borrow rate trends |
-| **BTC Vault** | SOL FR + USDC borrow cost | BTC price, collateral LTV |
+| Signal | Description |
+|--------|-------------|
+| **Primary** | SOL Funding Rate |
+| **Secondary** | Lending rates across protocols |
 
 ## USDC Vault Allocation Model
 
@@ -53,25 +52,6 @@ BASE_ONLY ←→ BASE_PLUS_DN
 |-------|---------|---------------|-----------------|
 | BASE_ONLY | 100% | 0% | Included in lending |
 | BASE_PLUS_DN | 30–50% | 50–70% | 30% minimum maintained |
-
-## SOL Vault Allocation Model
-
-Monthly decision cycles to avoid swap cost erosion:
-
-| Spread Level | Staking | LST Loop |
-|-------------|---------|----------|
-| > 3% (1 week) | 30–50% | 50–70% |
-| 0.5–3% | 80–90% | 10–20% |
-| < 0% (2 weeks) | 100% | 0% |
-
-## BTC Vault Allocation Model
-
-Requires **two conditions** to be met simultaneously:
-
-1. USDC Vault DN entry conditions satisfied (SOL FR > threshold)
-2. USDC borrow APR < SOL FR × 0.6 (borrow cost leaves sufficient margin)
-
-Plus continuous BTC price monitoring for collateral LTV management.
 
 ## Parameter Optimization
 
