@@ -1,6 +1,6 @@
 # What is Dawn Vault?
 
-Dawn Vault is a **validator-native yield vault** on Solana — designed, built, and operated by [Dawn Labs](https://dawnlabs.tech), an active Solana validator operator.
+Dawn Vault is a **validator-native yield vault** on Solana.
 
 ## The Concept
 
