@@ -10,18 +10,18 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 
 | Service | Description | Status |
 |---------|-------------|--------|
-| **[SOL Staking](staking/sol-staking.md)** | Native Staking, LST Staking (dawnSOL), Multiple Staking (0% commission + kickback for VIPs) | Live |
+| **[SOL Staking](about/services.md#sol-staking)** | Native Staking, LST Staking, Multiple Staking (0% commission + kickback for VIPs) | Live |
 | **[Dawn Vault (USDC)](vault/overview.md)** | Automated yield vault: Kamino Multiply + lending + delta-neutral (9-16%+ APY) | Phase 1 Active |
 
 ### Consulting
 
 | Service | Description | Status |
 |---------|-------------|--------|
-| **Validator Growth** | Onboarding, training, and growth strategy for enterprise validators entering Solana | Available |
+| **[Validator Growth](about/services.md#validator-growth)** | Onboarding, training, and growth strategy for enterprise validators | Available |
 
 ## Why Dawn Labs?
 
-- **Validator-Native** — Yield strategies start at the infrastructure layer, providing structural alpha unavailable to pure DeFi aggregators
+- **Validator-Native** — Our yield strategies start at the infrastructure layer, giving us structural alpha unavailable to pure DeFi aggregators
 - **$150M+ Assets Managed** — Proven track record with institutional-scale operations
 - **APAC-Based** — Bridging the Japanese market to the Solana ecosystem
 - **Compliance-Ready** — Navigate regulation and audit requirements together
@@ -41,14 +41,6 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 |------|------|---------|
 | **Yutaro Nagumo** | CEO | [@SouthCloud0703](https://x.com/SouthCloud0703) |
 | **Toshiyuki Tega** | CTO | [@SoftgateJa](https://x.com/SoftgateJa) |
-
-## Contact
-
-- **Email**: [info@dawnlabs.tech](mailto:info@dawnlabs.tech)
-- **Telegram**: [@SouthCloud0703](https://t.me/SouthCloud0703)
-- **X (Twitter)**: [@dawnlabs00](https://x.com/dawnlabs00)
-- **Website**: [dawnlabs.tech](https://dawnlabs.tech)
-- **Contact Form**: [dawnlabs.tech/#contact](https://dawnlabs.tech/#contact)
 
 ---
 
