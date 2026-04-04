@@ -35,7 +35,7 @@ Built on **Voltr** (Ranger Finance) — battle-tested with multiple vaults in pr
 
 - Voltr framework has been audited
 - Kamino audited by Certora, OtterSec, Sec3, Ackee
-- Dawn Vault のソースコードは [GitHub で公開](https://github.com/DawnLabsTech/vault) — 誰でもコードレビュー可能
+- Dawn Vault source code is [open source on GitHub](https://github.com/DawnLabsTech/vault) — anyone can review the code
 - Dedicated third-party audit planned
 
 ## Risk Disclosures

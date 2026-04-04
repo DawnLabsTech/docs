@@ -55,7 +55,7 @@ Yes. Strategies minimize risk, but loss is possible due to smart contract bugs, 
 Multi-layered system: Multiply Risk Scorer (4 dimensions: depeg risk, liquidation proximity, exit liquidity, reserve pressure), Lending Risk Scorer (5 dimensions), Protocol Circuit Breaker, staged deleverage protection, DN risk manager, guardrails and kill switch.
 
 **Is the smart contract audited?**
-Voltr framework and Kamino have been audited. Dawn Vault のソースコードは [GitHub で公開](https://github.com/DawnLabsTech/vault)されており、誰でもコードレビューが可能。Dedicated third-party audit planned.
+Voltr framework and Kamino have been audited. Dawn Vault source code is [open source on GitHub](https://github.com/DawnLabsTech/vault) — anyone can review the code. A dedicated third-party audit is planned.
 
 **Is the code open source?**
 Yes. Bot, backtest engine, and dashboard are all open source: [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
