@@ -20,7 +20,7 @@ Nothing in this documentation or on the Dawn Vault platform constitutes financia
 
 ### Risk Acknowledgment
 
-By depositing into Dawn Vault, you acknowledge that you understand and accept the risks described in our [Risk Disclosures](../security/risk-disclosures.md), including but not limited to:
+By depositing into Dawn Vault, you acknowledge that you understand and accept the risks described in our [Risk & Security](../vault/risk-and-security.md), including but not limited to:
 
 - Smart contract vulnerabilities
 - Market and funding rate risk
