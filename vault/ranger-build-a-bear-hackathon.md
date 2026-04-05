@@ -12,11 +12,7 @@ Dawn Vault is a validator-native yield vault built on Ranger's Voltr vault frame
 
 **Link:** `TBD`
 
-Walkthrough of the strategy, where the edge comes from, and how the vault operates on Ranger Earn.
-
 ### 📄 Strategy Documentation
-
-**Primary links:**
 
 - [Overview](overview.md)
 - [USDC Vault](usdc-vault.md)
@@ -24,21 +20,13 @@ Walkthrough of the strategy, where the edge comes from, and how the vault operat
 - [Risk & Security](risk-and-security.md)
 - [Transparency](transparency.md)
 
-These pages explain the strategy thesis, portfolio construction, entry / exit logic, position sizing, drawdown controls, and rebalancing framework.
-
 ### 💻 Code Repository
 
 **Link:** [DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
 
-Open-source reference implementation for the vault, backtest engine, and supporting strategy logic. If any submission-specific repository remains private, organizers and judges should be granted review access as required.
-
-> If a private repository is used, please add `@jakeyvee` on GitHub so the code can be reviewed. Submissions without verifiable code will not be considered.
-
 ### 🔗 On-chain Verification
 
 **Wallet / Vault Address:** `TBD`
-
-This will be the wallet address or vault address used during the hackathon build window (**Mar 9 - Apr 6**). Judges can verify trade activity and performance directly on-chain via Solscan.
 
 ## What This Submission Is Showing
 
