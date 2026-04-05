@@ -16,7 +16,6 @@
 ## Dawn Vault
 
 * [Overview](vault/overview.md)
-* [Ranger Build-A-Bear Hackathon](vault/ranger-build-a-bear-hackathon.md)
 * [USDC Vault](vault/usdc-vault.md)
 * [Backtest](vault/backtest.md)
 * [AI Support](vault/ai-support.md)
@@ -25,6 +24,7 @@
 * [Fees & How to Use](vault/fees-and-usage.md)
 * [FAQ & Glossary](vault/faq-and-glossary.md)
 * [Roadmap](vault/roadmap.md)
+* [Ranger Build-A-Bear Hackathon](vault/ranger-build-a-bear-hackathon.md)
 
 ## Legal
 
