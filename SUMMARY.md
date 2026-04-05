@@ -6,7 +6,7 @@
 
 * [Services](about/services.md)
 * [Validator](about/validator.md)
-* [Contact](about/contact.md)
+* [Links & Contacts](about/contact.md)
 
 ## Multiple Staking
 
