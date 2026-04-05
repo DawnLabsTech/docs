@@ -21,6 +21,10 @@ Dawn Vault is a validator-native yield strategy being developed for Ranger Earn.
 - [Risk & Security](risk-and-security.md)
 - [Transparency](transparency.md)
 
+### 📊 Live Dashboard
+
+**Link:** [Dawn Vault Dashboard](https://frontend-sand-six-69.vercel.app/)
+
 ### 💻 Code Repository
 
 **Link:** [DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
