@@ -44,32 +44,27 @@ Dawn Vault is a validator-native yield vault built on Ranger's Voltr vault frame
 - Validator infrastructure is part of the yield stack, creating a source of edge that pure aggregators do not have
 - The vault combines stable base carry with conditional alpha instead of forcing one strategy across all market regimes
 - The delta-neutral layer targets funding rate income while keeping net directional SOL exposure near zero
-- Please evaluate whether this structure is meaningfully differentiated and defensible over time
 
 ### Risk Management
 
 - Multiply allocation is gated by a dedicated risk scorer covering depeg risk, liquidation proximity, exit liquidity, and reserve pressure
 - Lending exposure is diversified and monitored with protocol-level circuit breakers
 - The delta-neutral layer uses explicit entry, exit, and emergency exit thresholds based on funding conditions
-- Please evaluate the practicality of the drawdown controls, position sizing rules, and rebalancing discipline
 
 ### Technical Implementation
 
 - The vault is built on Ranger's vault framework with a clear separation between vault program, adapters, and manager logic
 - Assets remain in PDA-controlled vault accounts with adapter whitelisting and role separation
 - The implementation includes backtest tooling, documented strategy logic, and production-oriented operational controls
-- Please evaluate code quality, adapter integration design, vault architecture, and security assumptions
 
 ### Production Viability
 
 - The strategy is designed around existing Solana liquidity venues and operationally realistic execution paths
 - The base layer can continue to earn while the alpha layer is inactive, which supports more stable deployment behavior
 - Capacity, monitoring, and operational safeguards are considered from the beginning rather than treated as future work
-- Please evaluate whether the vault has a credible path from hackathon prototype to live managed product
 
 ### Novelty & Innovation
 
 - The submission connects validator economics, LST yield, DeFi carry, and automated vault logic into one product
 - It frames the vault as infrastructure-first yield, not just APY routing
 - The Yield Smoothing Reserve concept extends validator revenue into yield stabilization for depositors
-- Please evaluate whether these design choices contribute something new to the Ranger and Solana ecosystem
