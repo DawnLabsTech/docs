@@ -30,13 +30,6 @@ Dawn Vault is a validator-native yield vault built on Ranger's Voltr vault frame
 
 - [View on Solscan](https://solscan.io/account/3S1kvQuLYLisn8KxHNiCoqTgtZNJQAxJi4oyGLxeeYVT)
 
-## What This Submission Is Showing
-
-- A validator-native yield strategy rather than a pure DeFi aggregator
-- A two-layer architecture with always-on base yield and conditional alpha activation
-- Rule-based risk management instead of discretionary portfolio management
-- A realistic path from hackathon build to production vault operations
-
 ## Judging Criteria
 
 ### Strategy Quality & Edge
