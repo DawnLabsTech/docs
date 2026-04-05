@@ -162,16 +162,9 @@ A "day" means one complete UTC day with all 3 expected 8-hour funding samples re
 | dawnSOL Staking | ~7% | Always-on while position is held |
 | **Weighted Average** | **15-20%** | During favorable FR periods (allocation-weighted) |
 
-### Historical Reference (Not Live Config)
+### Backtest Reference
 
-A prior 5.5-year Walk-Forward study produced:
-
-- Entry: FR > 15% annualized for 2 days
-- Exit: FR < -2% annualized for 1 day
-- DN Allocation: 50%
-- Result: 8.57% annualized return, Sharpe 13.41, max drawdown -0.07%
-
-These are research context, **not** the current runtime parameters.
+821-day backtest (Jan 2024 — Apr 2026) with the current strategy produced 16.83% annualized return, Sharpe 31.50, max drawdown 0.22%. See [Backtest](backtest.md) for full details.
 
 ---
 
