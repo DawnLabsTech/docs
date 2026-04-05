@@ -17,6 +17,7 @@ Dawn Vault is a validator-native yield strategy being developed for Ranger Earn.
 - [Overview](overview.md)
 - [USDC Vault](usdc-vault.md)
 - [Backtest](backtest.md)
+- [AI Support](ai-support.md)
 - [Risk & Security](risk-and-security.md)
 - [Transparency](transparency.md)
 
@@ -47,6 +48,7 @@ Dawn Vault is a validator-native yield strategy being developed for Ranger Earn.
 ### Technical Implementation
 
 - The current implementation centers on strategy logic, backtest tooling, monitoring, and production-oriented operational controls
+- The operator stack includes AI Advisor and Vault AI Chat for read-only monitoring, explanation, and support workflows
 - This submission validates the allocation logic, risk controls, and execution design before vault-framework integration
 - Ranger vault framework integration and protocol adapters are planned as the next step toward production deployment
 
@@ -59,5 +61,6 @@ Dawn Vault is a validator-native yield strategy being developed for Ranger Earn.
 ### Novelty & Innovation
 
 - The submission connects validator economics, LST yield, DeFi carry, and automated vault logic into one product
+- It adds an AI support layer for operator-facing recommendations, vault-state interpretation, and scenario analysis without execution authority
 - It frames the vault as infrastructure-first yield, not just APY routing
 - The Yield Smoothing Reserve concept extends validator revenue into yield stabilization for depositors
