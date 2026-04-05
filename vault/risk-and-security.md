@@ -2,11 +2,23 @@
 
 Dawn Vault is an experimental DeFi product. All deposits are subject to risk.
 
+## Repository Scope
+
+This repository is the **off-chain operator stack** for Dawn Vault. It includes the strategy bot, monitoring dashboard, AI support services, and backtest tooling.
+
+It does **not** include the on-chain vault program, PDA custody implementation, deployed program addresses, or multisig governance configuration. As a result:
+
+- this repo can verify operator-side controls, not on-chain custody guarantees by itself
+- any on-chain security claim requires separate deployed-program documentation or audit evidence
+- "open source" for this repo should not be read as proof that every production component is published here
+
 ## Smart Contract Security
 
 ### Non-Custodial Design
 
-All vault assets are held in **Program Derived Accounts (PDAs)** controlled by the Vault Program — not by any individual or multisig wallet. Depositors can always withdraw by burning their LP tokens.
+The intended product architecture is non-custodial, with vault assets held in **Program Derived Accounts (PDAs)** controlled by the on-chain vault program rather than by an individual operator.
+
+However, the on-chain custody code and deployed addresses are not part of this repository, so that statement must be validated from separate on-chain documentation and audits.
 
 ### Permission Separation
 
@@ -16,6 +28,8 @@ All vault assets are held in **Program Derived Accounts (PDAs)** controlled by t
 | **Manager** | Execute rebalances, harvest fees, manage positions via adapters | Manager Bot |
 
 The Manager Bot cannot add new adapters, change fee parameters, withdraw to arbitrary addresses, or bypass adapter whitelisting.
+
+This repository only demonstrates the off-chain manager side. It does not by itself prove the deployed on-chain permission model.
 
 ### Adapter Whitelisting
 
@@ -33,10 +47,10 @@ Built on **Voltr** (Ranger Finance) — battle-tested with multiple vaults in pr
 
 ### Audit Status
 
-- Voltr framework has been audited
-- Kamino audited by Certora, OtterSec, Sec3, Ackee
-- Dawn Vault source code is [open source on GitHub](https://github.com/DawnLabsTech/vault) — anyone can review the code
-- Dedicated third-party audit planned
+- The off-chain operator stack in this repository is [open source on GitHub](https://github.com/DawnLabsTech/vault)
+- Kamino has public third-party audits
+- Any audit claim for the separate on-chain vault / custody layer must reference the actual deployed program and its audit reports
+- A dedicated third-party audit for the full product stack remains planned
 
 ## Risk Disclosures
 
@@ -70,15 +84,15 @@ Delta-neutral uses Binance for perpetual futures. Exchange insolvency, API outag
 
 ### 6. Oracle Risk — Low-Medium
 
-Price feeds from Pyth may be delayed, manipulated, or stale.
+Price data used by the operator stack and underlying protocols may be delayed, manipulated, or stale.
 
-**Mitigations:** Multi-source aggregation, staleness checks (>2 slots → pause), deviation monitoring (>5% → halt).
+**Current repo mitigations:** bot-side stale-data alerts, protocol circuit-breaker checks for large USDC price deviation, and protocol-specific risk scoring. This repository does not, by itself, prove a full multi-oracle consensus design.
 
 ### 7. Operational Risk — Low-Medium
 
 Manager Bot is a critical off-chain component.
 
-**Mitigations:** 5-minute health checks with auto-retry, externalized configuration, kill switch and guardrails.
+**Mitigations:** internal scheduler health monitoring, Docker health checks, retry wrappers, externalized configuration, kill switch and guardrails.
 
 ### 8. Liquidity Risk — Low
 
@@ -100,7 +114,7 @@ DeFi regulations are evolving. Vault operates under non-custodial architecture t
 
 Network outages, congestion, or consensus issues could prevent operations.
 
-**Mitigations:** Conservative leverage survives multi-hour outages, priority fee management, post-outage health checks.
+**Mitigations:** conservative leverage, transaction retry / confirmation logic, and post-failure operator monitoring. Exact on-chain recovery behavior depends on the separate custody layer.
 
 ## Summary Risk Matrix
 

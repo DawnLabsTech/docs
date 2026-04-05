@@ -70,6 +70,8 @@ Depositors can independently verify:
 - **Vault TVL**: On-chain total assets visible to anyone
 - **Protocol positions**: On-chain adapter positions are public
 
+Important scope note: this repository currently exposes the off-chain operator stack, not the on-chain vault program itself. Independent on-chain verification therefore depends on Dawn Vault publishing the deployed program addresses, vault addresses, and proof/report endpoints separately.
+
 ### Skin in the Game
 
 Dawn Labs deploys its own capital under the **exact same conditions** as depositors — same vault, same strategy, same fee structure. No preferential treatment or separate accounts.

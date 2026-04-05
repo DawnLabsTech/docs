@@ -29,6 +29,17 @@ Vault (Single Entry Point)
 
 The Base Layer ensures depositors always earn yield. The Alpha Layer activates only when market conditions justify the extra complexity.
 
+## Repository Scope
+
+This open-source repository currently contains the **off-chain operator stack** for Dawn Vault:
+
+- Manager bot and risk controls
+- AI support services
+- Monitoring dashboard
+- Backtest tooling
+
+The on-chain vault program, PDA custody layer, adapter programs, deployed addresses, and multisig governance artifacts are **not included in this repository**. Any claim about on-chain custody or admin separation should therefore be read as product architecture, not as something this repo alone can verify.
+
 ## Vault Lineup
 
 | | USDC Vault | SOL Vault | BTC Vault |
@@ -98,8 +109,6 @@ graph TB
 
 ### Security Model
 
-- **Non-Custodial**: Assets in PDA accounts, not controlled by any individual
-- **Permission Separation**: Admin (multisig) vs. Manager (bot) with distinct privileges
-- **Adapter Whitelisting**: Only approved adapters can access vault funds
-- **Locked Profit**: Yearn V2-style linear release prevents sandwich attacks
-Built on the **Voltr** vault framework (Ranger Finance) — battle-tested with multiple vaults in production.
+- **Operator Stack in This Repo**: The code here covers monitoring, allocation logic, risk checks, AI support, and dashboard access control.
+- **Planned / External Custody Layer**: PDA custody, adapter whitelisting, admin multisig, and locked-profit mechanics belong to the separate on-chain layer and must be verified from deployed program docs and audit material.
+- **Production Access Control**: The dashboard and proxy can be protected with `FRONTEND_API_SECRET`, while the bot API requires `API_AUTH_TOKEN` and is intended to stay behind the frontend proxy on localhost.

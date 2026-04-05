@@ -14,7 +14,9 @@ A yield-generating vault on Solana built by Dawn Labs, an active Solana validato
 
 **Is Dawn Vault custodial?**
 
-No. All assets are held in on-chain PDA accounts controlled by the Vault Program smart contract. No individual or multisig can arbitrarily withdraw depositor funds.
+The intended product architecture is non-custodial, with assets held by the on-chain vault program rather than by an individual operator.
+
+This repository, however, contains the off-chain operator stack only. It does not include the on-chain custody program or deployed addresses, so that guarantee must be verified from separate on-chain documentation.
 
 **Who operates Dawn Vault?**
 
@@ -69,11 +71,11 @@ Multi-layered system: Multiply Risk Scorer (4 dimensions: depeg risk, liquidatio
 
 **Is the smart contract audited?**
 
-Voltr framework and Kamino have been audited. Dawn Vault source code is [open source on GitHub](https://github.com/DawnLabsTech/vault) — anyone can review the code. A dedicated third-party audit is planned.
+The open-source portion in [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault) is the off-chain operator stack. Kamino has public audits. Audit claims for the separate on-chain vault / custody layer should be checked against the actual deployed program and its audit reports. A dedicated third-party audit for the full product remains planned.
 
 **Is the code open source?**
 
-Yes. Bot, backtest engine, and dashboard are all open source: [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
+Yes for the off-chain operator stack: bot, backtest engine, dashboard, and AI support services are open source in [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault). That does not, by itself, prove that the separate on-chain custody layer is published in this same repository.
 
 ---
 

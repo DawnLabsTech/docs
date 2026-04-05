@@ -16,6 +16,13 @@ Both features are **non-executing**. They can observe, summarize, explain, and s
 
 This design keeps AI in the support layer. The worst case for an AI mistake is an irrelevant suggestion or a low-quality explanation, not an unauthorized on-chain or exchange action.
 
+## Access Control
+
+- The dashboard / proxy layer can be protected with `FRONTEND_API_SECRET`
+- The bot API is intended to stay behind the frontend proxy and requires `API_AUTH_TOKEN`
+- Chat requests are validated for body size, message length, and session format before reaching the model
+- Rate limits apply both per session and per client, so rotating session IDs alone should not bypass throttling
+
 ## AI Advisor
 
 The AI Advisor continuously monitors the vault's state and produces actionable recommendations for the operator.
@@ -119,5 +126,7 @@ These are **chat tools**, not separate AI products. They extend the chat's abili
 
 - **No execution authority**: chat cannot place trades or mutate live strategy state
 - **Requires API key**: if `ANTHROPIC_API_KEY` is not configured, chat remains disabled
-- **Per-session rate limit**: 30 user messages per hour by default
+- **Operator-only surface**: do not expose chat publicly without frontend and bot auth configured
+- **Rate limits**: 30 user messages per hour by default, enforced per session and per client
+- **Input validation**: request body size, session ID shape, and message length are restricted before model execution
 - **Read-only support scope**: analysis, explanation, and backtests only
