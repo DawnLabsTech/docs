@@ -4,7 +4,7 @@ This page is the submission hub for Dawn Vault's Ranger Build-A-Bear Hackathon e
 
 ## Dawn Vault in One Paragraph
 
-Dawn Vault is a validator-native yield vault built on Ranger's Voltr vault framework and designed as a Ranger Earn strategy. Instead of relying on a single DeFi primitive, it combines a stable **Base Layer** (Kamino Multiply + lending) with a conditional **Alpha Layer** (SOL delta-neutral with dawnSOL staking) so the vault can pursue higher yield without depending on directional SOL exposure.
+Dawn Vault is a validator-native yield strategy being developed for Ranger Earn. The current implementation focuses on strategy logic, risk management, and backtest tooling, with future on-chain deployment planned to integrate Ranger's vault framework and protocol adapters. Instead of relying on a single DeFi primitive, it combines a stable **Base Layer** (Kamino Multiply + lending) with a conditional **Alpha Layer** (SOL delta-neutral with dawnSOL staking) so the vault can pursue higher yield without depending on directional SOL exposure.
 
 ## Submission Materials
 
@@ -46,9 +46,9 @@ Dawn Vault is a validator-native yield vault built on Ranger's Voltr vault frame
 
 ### Technical Implementation
 
-- The vault is built on Ranger's vault framework with a clear separation between vault program, adapters, and manager logic
-- Assets remain in PDA-controlled vault accounts with adapter whitelisting and role separation
-- The implementation includes backtest tooling, documented strategy logic, and production-oriented operational controls
+- The current implementation centers on strategy logic, backtest tooling, monitoring, and production-oriented operational controls
+- This submission validates the allocation logic, risk controls, and execution design before vault-framework integration
+- Ranger vault framework integration and protocol adapters are planned as the next step toward production deployment
 
 ### Production Viability
 
