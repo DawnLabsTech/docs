@@ -67,13 +67,44 @@ Multiply generates the vast majority of returns. The DN layer contributes a smal
 | Lending Only | 11.60% |
 | SOL Buy & Hold | -18.31% |
 
-## Limitations
+## Known Limitations
 
-- **Fixed APY assumption**: Multiply and Lending APYs are held constant. Real rates fluctuate.
-- **No depeg / liquidity modeling**: Multiply collateral depeg risk and exit liquidity constraints are not simulated.
-- **Fee model**: Binance taker 0.04% + swap slippage 0.1% + Solana gas + $1 withdrawal fee.
-- **Data source**: Binance SOL-PERP 8-hour funding rates only.
-- **Sharpe Ratio caveat**: The high Sharpe (27.0) is partly an artifact of fixed-APY inputs. Expect lower values in live operation.
+### 1. Fixed Multiply / Lending APY
+
+The largest constraint. Multiply (13%) and Lending (5%) are held constant for the entire period. In practice, rates fluctuate significantly (Multiply: 8-20%, Lending: 2-8%). This means:
+
+- **Sharpe Ratio is overstated** — volatility comes only from fee events, not from APY fluctuations
+- **Max Drawdown is understated** — Multiply APY drops and depeg-driven drawdowns are not modeled
+- **DN's relative value is hidden** — DN becomes more valuable when Multiply APY drops, but this flexibility cannot be evaluated under fixed assumptions
+
+Improvement: ingest historical APY time-series from Kamino/Jupiter APIs and apply variable rates per tick.
+
+### 2. Multiply Risk Not Modeled
+
+- **Depeg risk**: No NAV loss if ONyc depegs from USDC
+- **Liquidity risk**: Exit slippage during forced withdrawals not reflected
+- **Liquidation risk**: Deleverage costs from Health Rate drops not included
+- **Pool capacity**: Assumed unlimited, but real capacity depends on TVL
+
+With these factors, Max Drawdown would likely be materially higher than 0.23%.
+
+### 3. Short Data Period (2 years)
+
+Only data from January 2024 onward is used. Different market cycles (bear markets, low-volatility regimes) are not tested. Binance FR data is available from 2021, but Kamino Multiply only launched in 2024 — longer backtests would require stronger APY assumptions.
+
+### 4. Instant DN Transitions
+
+In production, DN entry/exit involves multiple steps (lending withdrawal → CEX transfer → position construction) taking minutes to tens of minutes. The backtest assumes instant transitions, ignoring price movement risk during execution.
+
+### 5. Static Fee Model
+
+- Swap slippage is fixed at 0.1%, but actual slippage depends on pool liquidity and trade size
+- Binance fees vary by tier (down to 0.02% at VIP levels)
+- Solana priority fees spike during congestion
+
+### 6. Only FR Uses Real Data
+
+Funding rates are the only real market data driving both DN entry/exit decisions and DN revenue. Base Layer yield (Multiply/Lending) uses fixed assumptions. This creates uneven simulation fidelity across the portfolio — the backtest is most reliable for evaluating DN signal quality, less so for absolute return projections.
 
 {% hint style="warning" %}
 Backtest results do not guarantee future performance. Past market conditions may not repeat. See [Risk & Security](risk-and-security.md) and [Disclaimer](../legal/disclaimer.md).
