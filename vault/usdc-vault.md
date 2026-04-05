@@ -164,7 +164,7 @@ A "day" means one complete UTC day with all 3 expected 8-hour funding samples re
 
 ### Backtest Reference
 
-821-day backtest (Jan 2024 — Apr 2026) with the current strategy produced 16.83% annualized return, Sharpe 31.50, max drawdown 0.22%. See [Backtest](backtest.md) for full details.
+See [Backtest](backtest.md) for full methodology, results, and how to run it yourself.
 
 ---
 
