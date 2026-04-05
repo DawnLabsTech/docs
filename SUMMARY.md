@@ -18,6 +18,7 @@
 * [Overview](vault/overview.md)
 * [USDC Vault](vault/usdc-vault.md)
 * [Backtest](vault/backtest.md)
+* [AI Advisor](vault/ai-advisor.md)
 * [Risk & Security](vault/risk-and-security.md)
 * [Transparency](vault/transparency.md)
 * [Fees & How to Use](vault/fees-and-usage.md)
