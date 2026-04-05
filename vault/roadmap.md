@@ -11,7 +11,7 @@ The flagship vault establishing Dawn Vault's core infrastructure and track recor
 - **Target APY**: 9-16%+
 
 ### Milestones
-- [x] Strategy backtest (821 days, Sharpe Ratio 31.50)
+- [x] Strategy backtest (821 days, Sharpe Ratio 27.01)
 - [x] Manager Bot development
 - [x] Live deployment with own capital
 - [ ] Public deposits

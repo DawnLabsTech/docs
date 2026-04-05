@@ -196,12 +196,12 @@ Within the Base Layer, capital flows in a **Multiply-first / Lending-second** mo
 
 | Metric | Value |
 |--------|-------|
-| **Annualized Return** | 16.83% |
-| **Sharpe Ratio** | 31.50 |
-| **Max Drawdown** | 0.22% |
+| **Annualized Return** | 14.04% |
+| **Sharpe Ratio** | 27.01 |
+| **Max Drawdown** | 0.23% |
 | **Test Period** | Jan 2024 — Apr 2026 (821 days) |
 
-Adding Multiply improved annualized return by +9.8pp over the legacy Lending+DN strategy (7.03% → 16.83%).
+Multiply generates 79% of total returns. DN contributes a smaller but consistent positive amount during favorable funding rate periods.
 
 For full methodology, scenario analysis, and limitations, see [Backtest](backtest.md).
 
