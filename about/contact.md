@@ -12,10 +12,15 @@
 
 - **Organization**: [github.com/DawnLabsTech](https://github.com/DawnLabsTech)
 - **Vault (Bot / Backtest / Dashboard)**: [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
-- **Documentation**: [github.com/DawnLabsTech/docs](https://github.com/DawnLabsTech/docs)
 
 ## Design Kit
 
 Logos, colors, and brand assets for press and partners.
 
 - **Download**: [Google Drive](https://drive.google.com/drive/folders/1nCs0MvDhgehNQSdmrWdH3_uI-Q3kTbj5)
+
+## VIP Kickback Program
+
+Fee kickback program for VIP depositors.
+
+- **Apply**: [Google Form](https://forms.gle/Qx6hg59sM5Jea4Pm7)
