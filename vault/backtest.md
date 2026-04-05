@@ -114,3 +114,65 @@ Adding Multiply improved annualized return by +9.8 percentage points (7.03% → 
 {% hint style="warning" %}
 Backtest results do not guarantee future performance. Past market conditions may not repeat. See [Risk & Security](risk-and-security.md) and [Disclaimer](../legal/disclaimer.md).
 {% endhint %}
+
+## Run It Yourself
+
+The backtest engine is open source. You can reproduce these results or test your own parameters.
+
+### Setup
+
+```bash
+git clone https://github.com/DawnLabsTech/vault.git
+cd vault/backtest
+npm install
+```
+
+### Basic Usage
+
+```bash
+# Run with default parameters (matches live bot config)
+npm run backtest
+
+# Show all available options
+npm run backtest -- --help
+```
+
+### CLI Options
+
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--start` | Start date | 2021-01-01 |
+| `--end` | End date | 2026-03-01 |
+| `--capital` | Initial capital (USDC) | 10000 |
+| `--multiply-apy` | Fixed Multiply APY (%) | 13 |
+| `--multiply-cap` | Max USDC in Multiply | unlimited |
+| `--lending-apy` | Fixed Lending APY (%) | 5 |
+| `--dawnsol-apy` | Fixed dawnSOL APY (%) | 6.8 |
+| `--entry-fr` | FR entry threshold (%) | 10 |
+| `--exit-fr` | FR exit threshold (%) | 0 |
+| `--emergency-fr` | Emergency exit threshold (%) | -10 |
+| `--confirm-days` | Confirmation days | 3 |
+| `--dn-alloc` | DN allocation ratio | 0.7 |
+| `--output` | Output format: `table` / `csv` / `json` | table |
+| `--fetch-only` | Fetch data only, skip simulation | — |
+
+### Examples
+
+```bash
+# Reproduce the published results
+npm run backtest -- --start 2024-01-01 --end 2026-04-01 --multiply-apy 16 --dawnsol-apy 7
+
+# Test with Multiply capacity cap
+npm run backtest -- --start 2024-01-01 --end 2026-04-01 --multiply-apy 16 --multiply-cap 5000
+
+# Legacy strategy (Lending + DN only, no Multiply)
+npm run backtest -- --start 2024-01-01 --end 2026-04-01 --multiply-apy 0 --multiply-cap 0
+
+# Export as JSON for further analysis
+npm run backtest -- --output json
+
+# Fetch funding rate data without running simulation
+npm run backtest -- --fetch-only --start 2020-01-01 --end 2026-04-01
+```
+
+Funding rate data is fetched from Binance on the first run and cached locally in SQLite. Subsequent runs reuse the cache.
