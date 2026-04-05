@@ -26,7 +26,9 @@ Dawn Vault is a validator-native yield vault built on Ranger's Voltr vault frame
 
 ### 🔗 On-chain Verification
 
-**Wallet / Vault Address:** `TBD`
+**Wallet / Vault Address:** `3S1kvQuLYLisn8KxHNiCoqTgtZNJQAxJi4oyGLxeeYVT`
+
+- [View on Solscan](https://solscan.io/account/3S1kvQuLYLisn8KxHNiCoqTgtZNJQAxJi4oyGLxeeYVT)
 
 ## What This Submission Is Showing
 
