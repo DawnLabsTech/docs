@@ -201,26 +201,16 @@ Within the Base Layer, capital flows in a **Multiply-first / Lending-second** mo
 
 ## Performance
 
-### Backtest Results (5.5 Years)
-
-Backtested using Binance SOL/USDT funding rate data from September 2020 to March 2026.
-
 | Metric | Value |
 |--------|-------|
-| **Annualized Return** | 8.57% |
-| **Sharpe Ratio** | 13.41 |
-| **Maximum Drawdown** | -0.07% |
-| **DN Active Rate** | 23.9% of the time |
-| **Cumulative Return** | +57% (vs. +32% lending-only → +25% excess return) |
+| **Annualized Return** | 16.83% |
+| **Sharpe Ratio** | 31.50 |
+| **Max Drawdown** | 0.22% |
+| **Test Period** | Jan 2024 — Apr 2026 (821 days) |
 
-### Stress Test Results
+Adding Multiply improved annualized return by +9.8pp over the legacy Lending+DN strategy (7.03% → 16.83%).
 
-All five historical stress scenarios passed with maximum drawdown of 0.00%:
-- 2022 May (LUNA collapse)
-- 2024 August (market crash)
-- 2025 October (flash crash)
-- Extended negative FR periods
-- Rapid FR reversal scenarios
+For full methodology, scenario analysis, and limitations, see [Backtest](backtest.md).
 
 ---
 
