@@ -7,7 +7,7 @@
 The flagship vault establishing Dawn Vault's core infrastructure and track record.
 
 - **Base Layer**: Kamino Multiply (ONyc/USDC ~16%, USDG/PYUSD ~9.5%) + USDC Lending (Kamino, Jupiter, 3-8%)
-- **Alpha Layer**: SOL delta-neutral with dawnSOL enhancement (15-30% APY)
+- **Alpha Layer**: SOL delta-neutral with dawnSOL enhancement (15-20% APY)
 - **Target APY**: 9-16%+
 
 ### Milestones

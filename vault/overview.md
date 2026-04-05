@@ -2,10 +2,6 @@
 
 Dawn Vault is a **validator-native yield vault** on Solana, built by Dawn Labs — an active Solana validator operator.
 
-{% hint style="info" %}
-**Open Source** — Dawn Vault's code is publicly available on GitHub: [DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
-{% endhint %}
-
 ## Concept
 
 Most DeFi yield vaults sit on top of protocols as users. Dawn Vault starts at the infrastructure layer and extends into DeFi:
@@ -106,8 +102,4 @@ graph TB
 - **Permission Separation**: Admin (multisig) vs. Manager (bot) with distinct privileges
 - **Adapter Whitelisting**: Only approved adapters can access vault funds
 - **Locked Profit**: Yearn V2-style linear release prevents sandwich attacks
-- **Open Source**: Bot, backtest engine, and dashboard code are [publicly available on GitHub](https://github.com/DawnLabsTech/vault)
-
 Built on the **Voltr** vault framework (Ranger Finance) — battle-tested with multiple vaults in production.
-
-> **Note:** Drift has been excluded due to the 2025 hack. All Drift code paths are `@deprecated`.

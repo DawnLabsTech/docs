@@ -16,7 +16,7 @@ Many DeFi yield products advertise an APY number without explaining its composit
 | **Staking Yield** | dawnSOL staking rewards on spot leg | ~7% | Low |
 | **Borrowing Cost** | Interest paid on borrowed assets (Multiply borrow leg) | -(0-3%) | N/A |
 | **Execution Cost** | Swap slippage, gas fees, position entry/exit costs | -(0.1-0.5%) | N/A |
-| **= Net Vault APY** | Sum of all components | **9-30%+** | — |
+| **= Net Vault APY** | Weighted average across allocations | **9-20%** | — |
 
 ### Example: Base Layer Only (Current Mode)
 
@@ -32,13 +32,15 @@ Net Vault APY:     ~12-16%  (Multiply-dominant)
 ### Example: Base + Alpha (High FR Period)
 
 ```
-Multiply Yield:    +14.2%   (ONyc/USDC @ 2.5x on 30% allocation)
-Lending Yield:      +5.2%   (Kamino USDC on 20% allocation)
-Funding Rate PnL:  +18.4%   (SOL FR collection on 50% allocation)
-Staking Yield:      +7.1%   (dawnSOL on DN allocation)
-Execution Cost:     -0.3%   (swaps, gas)
-─────────────────────────
-Net Vault APY:     +44.6%   (blended across allocations)
+Allocation:  Multiply 30% / Lending 20% / DN 50%
+
+Multiply Yield:    14.2% × 0.30 =  +4.3%
+Lending Yield:      5.2% × 0.20 =  +1.0%
+Funding Rate PnL:  18.4% × 0.50 =  +9.2%
+Staking Yield:      7.1% × 0.50 =  +3.6%
+Execution Cost:                     -0.3%
+─────────────────────────────────────────
+Net Vault APY:                     ~17.8%  (weighted average)
 ```
 
 > We will never report a blended APY number without providing its full decomposition.

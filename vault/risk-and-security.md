@@ -92,8 +92,6 @@ Failure in any composed protocol (lending, Multiply, DEX) could cascade.
 
 **Mitigations:** Protocol diversification (max 60% per protocol), circuit breaker (auto-exit on TVL crash, oracle drift, withdrawal failure), lending risk scorer tracks incident history.
 
-> **Note:** Drift has been excluded due to the 2025 hack.
-
 ### 10. Regulatory Risk — Unknown
 
 DeFi regulations are evolving. Vault operates under non-custodial architecture to reduce regulatory exposure.

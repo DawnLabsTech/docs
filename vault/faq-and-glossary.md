@@ -5,20 +5,25 @@
 ### General
 
 **What is Dawn Vault?**
+
 A yield-generating vault on Solana built by Dawn Labs, an active Solana validator operator. It combines Kamino Multiply, lending aggregation, and delta-neutral strategies for optimized risk-adjusted returns.
 
 **What makes Dawn Vault different?**
+
 (1) **Validator-native alpha** — dawnSOL adds staking rewards on top of strategy returns; (2) **Full transparency** — every source of yield is decomposed and disclosed; (3) **Yield Smoothing Reserve** — validator commission revenue stabilizes returns.
 
 **Is Dawn Vault custodial?**
+
 No. All assets are held in on-chain PDA accounts controlled by the Vault Program smart contract. No individual or multisig can arbitrarily withdraw depositor funds.
 
 **Who operates Dawn Vault?**
+
 Dawn Labs, a Solana operations partner based in APAC. We run validator infrastructure and operate the vault with our own capital alongside depositors.
 
 ### Yield
 
 **Where does the yield come from?**
+
 - **Kamino Multiply** — Leveraged stablecoin loops (ONyc/USDC ~16%, USDG/PYUSD ~9.5%)
 - **Lending interest** — USDC lent to Kamino and Jupiter
 - **Funding rate payments** — SOL-PERP perpetual futures (when active)
@@ -27,41 +32,48 @@ Dawn Labs, a Solana operations partner based in APAC. We run validator infrastru
 See [Transparency](transparency.md) for full details.
 
 **What APY can I expect?**
-9-16%+ from the Base Layer (Kamino Multiply + Lending). During high SOL funding rate periods, 25-30% when the Alpha Layer is active. Current mode (2026-04): Base Layer only.
+
+9-16% from the Base Layer (Kamino Multiply + Lending). During high SOL funding rate periods, up to 20% when the Alpha Layer is active.
 
 **Is the APY guaranteed?**
+
 No. APY depends on market conditions and is variable. The Yield Smoothing Reserve helps stabilize but does not guarantee any minimum.
 
 **How is yield distributed?**
+
 Auto-compounded into the vault. No claiming or harvesting. LP token share price increases as the vault earns yield.
 
 ### Deposits & Withdrawals
 
 **What assets can I deposit?**
+
 USDC (SPL token on Solana).
 
 **Is there a lock-up period?**
+
 No. Withdraw at any time.
 
 **What are the fees?**
+
 Performance: 20% (HWM-based), Management: 1%/year, Deposit: 0%, Withdrawal: 0.1%. See [Fees & How to Use](fees-and-usage.md).
 
 ### Risk
 
 **Can I lose money?**
+
 Yes. Strategies minimize risk, but loss is possible due to smart contract bugs, market events, or other factors. See [Risk & Security](risk-and-security.md).
 
 **How is risk managed?**
+
 Multi-layered system: Multiply Risk Scorer (4 dimensions: depeg risk, liquidation proximity, exit liquidity, reserve pressure), Lending Risk Scorer (5 dimensions), Protocol Circuit Breaker, staged deleverage protection, DN risk manager, guardrails and kill switch.
 
 **Is the smart contract audited?**
+
 Voltr framework and Kamino have been audited. Dawn Vault source code is [open source on GitHub](https://github.com/DawnLabsTech/vault) — anyone can review the code. A dedicated third-party audit is planned.
 
 **Is the code open source?**
-Yes. Bot, backtest engine, and dashboard are all open source: [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
 
-**Why was Drift excluded?**
-Following the 2025 hack. All Drift code paths are deprecated.
+Yes. Bot, backtest engine, and dashboard are all open source: [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
 
 ---
 
