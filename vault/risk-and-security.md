@@ -78,9 +78,9 @@ DN uses 1x leverage (margin = position size) — liquidation risk effectively ze
 
 ### 5. Exchange / Counterparty Risk — Medium
 
-Delta-neutral uses Binance for perpetual futures. Exchange insolvency, API outages, or regulatory actions could affect margin funds.
+Delta-neutral currently uses Binance for perpetual futures. Exchange insolvency, API outages, or regulatory actions could affect margin funds held on the CEX.
 
-**Mitigations:** Position size limits, minimum on-chain balance maintained, multi-venue consideration for future phases.
+**Mitigations:** Position size limits, minimum on-chain balance maintained. A **Bulk Trade** connector (Solana-native on-chain perp) is under testnet evaluation — if moved to production, it would eliminate CEX custody risk entirely. Migration is contingent on Bulk's mainnet launch and security audit completion.
 
 ### 6. Oracle Risk — Low-Medium
 

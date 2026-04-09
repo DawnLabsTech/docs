@@ -26,7 +26,7 @@ graph LR
     BL --> KL[Kamino Lend]
     BL --> JL[Jupiter Lend]
     AL --> SP[SOL Spot Buy<br>→ dawnSOL]
-    AL --> SH[SOL-PERP Short<br>on Binance]
+    AL --> SH[SOL-PERP Short<br>Binance / Bulk Trade]
 ```
 
 ---
@@ -138,11 +138,13 @@ A market-neutral strategy that captures SOL funding rate payments while maintain
 
 1. Split USDC 50/50: half for spot, half for margin
 2. Buy SOL spot → convert to **dawnSOL** (Dawn Labs' LST, ~7% staking yield)
-3. Open equal-sized SOL-PERP short on Binance (1x leverage — margin = position size)
+3. Open equal-sized SOL-PERP short (1x leverage — margin = position size)
 4. Net SOL exposure = 0: spot long cancels out perp short
 5. Collect funding rate payments (when positive) + staking rewards
 
 **No leverage is used.** For a $20,000 allocation: $10,000 buys SOL spot → dawnSOL, $10,000 serves as margin for SOL-PERP short. Liquidation risk is effectively zero.
+
+**Perp venue:** Currently **Binance Futures** (default). A **Bulk Trade** connector is implemented and under testnet evaluation — Bulk is a Solana-native on-chain perp DEX that would eliminate CEX counterparty risk. Production migration is planned after Bulk's mainnet launch and security audit.
 
 ### Entry / Exit Logic (Live Config)
 

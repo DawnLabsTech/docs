@@ -77,7 +77,7 @@ graph TB
     subgraph "Strategy Execution"
         MB[Manager Bot] -->|Rebalance / Hedge| VP
         MB -->|Monitor| RM[Risk Manager<br>Circuit Breaker / Anomaly Detection]
-        MB -->|Execute| CEX[CEX Integration<br>Binance Perps]
+        MB -->|Execute| CEX[Perp Integration<br>Binance / Bulk Trade]
         MB -->|Scan| MS[Market Scanner<br>Pool APY Comparison]
     end
 
