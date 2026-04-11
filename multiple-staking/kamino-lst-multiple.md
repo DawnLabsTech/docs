@@ -1,5 +1,8 @@
 # Kamino LST Multiple
 
+> **This strategy is currently under preparation and not yet available.**
+> Support will be added once dawnSOL is listed on Kamino. Please check back later.
+
 A looping strategy that uses Kamino (K-Lend) and Sanctum to leverage Dawn Labs' LST (dawnSOL) for amplified staking yield. Kamino's Multiply feature enables one-click leveraged position construction.
 
 ## How It Works
