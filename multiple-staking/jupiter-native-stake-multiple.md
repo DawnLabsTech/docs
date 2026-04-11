@@ -2,14 +2,31 @@
 
 A looping strategy that uses Jupiter Lend to borrow SOL against natively staked SOL with the Dawn Labs validator, then restakes the borrowed SOL to amplify staking yield.
 
-## How It Works
+## How to Use
 
-1. Stake SOL with the Dawn Labs validator
-2. Tokenize staked SOL into nsToken (via Solana's official Single Pool Program)
-3. Deposit nsToken as collateral on Jupiter Lend Vault
-4. Borrow SOL against the collateral
-5. Restake borrowed SOL with the Dawn Labs validator
-6. Repeat to achieve up to ~7x leverage
+### 1. Native Stake SOL with the DawnLabs Validator
+
+Stake SOL to the Dawn Labs validator using native staking from your wallet:
+
+- **Phantom**: [Stake SOL in Phantom with native staking](https://help.phantom.com/hc/en-us/articles/4406374138771-Stake-SOL-in-Phantom-with-native-staking)
+- **Solflare**: [Native Solana (SOL) Staking on Solflare: A Step-by-Step Guide](https://help.solflare.com/en/articles/9264008-native-solana-sol-staking-on-solflare-a-step-by-step-guide)
+- **Ledger**: [Stake SOL with Ledger](https://www.ledger.com/staking/ledger-node/solana)
+
+### 2. Wait for Your Stake to Become Active
+
+Native stake activation takes 1 epoch (~2–3 days). Wait until your stake status shows **Active** before proceeding.
+
+### 3. Deposit nsDawn as Collateral on Jupiter Lend
+
+Once your stake is active, it is tokenized as **nsDawn** (an nsToken representing your native stake position). Go to [Jupiter Lend](https://jup.ag/lend/borrow/73) and deposit the desired amount of nsDawn as collateral.
+
+### 4. Borrow SOL Against Your Collateral
+
+On Jupiter Lend, borrow SOL using your deposited nsDawn as collateral.
+
+### 5. Restake Borrowed SOL and Repeat
+
+Return to step 1 and native stake the borrowed SOL with the Dawn Labs validator again. By repeating this loop, you can achieve up to **~7x leverage** on your staking yield.
 
 Staking rewards continue to accrue even after the staked SOL is used as collateral, since the stake state is maintained throughout the borrowing structure.
 
