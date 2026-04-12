@@ -20,38 +20,35 @@ The flagship vault establishing Dawn Vault's core infrastructure and track recor
 
 ---
 
-## Phase 2: SOL Vault
+## Phase 2: Strata — Tranched Vault
 
 **Status: Planned**
 
-| Parameter | Value |
-|-----------|-------|
-| **Base Layer** | Validator Staking (6-7%) |
-| **Alpha Layer** | LST Loop (10-20%) |
-| **Rebalance Freq** | Monthly (swap cost sensitive) |
-| **Decision Metric** | LST yield - SOL borrow rate spread |
+Split the USDC Vault into Senior and Junior tranches, enabling institutional investors to participate with defined risk/return profiles.
+
+| | Senior Vault | Junior Vault |
+|---|---|---|
+| **Return** | 8% fixed | Variable (residual upside) |
+| **Loss priority** | Protected (last to absorb) | First-loss buffer |
+| **Withdrawal** | Instant | 7-day lock |
+| **Target** | Institutions, stable-yield seekers | High-yield seekers |
+
+Underlying strategy remains the same as Phase 1. Risk separation is enforced via an on-chain Accounting Waterfall (Anchor program) built on Ranger Finance infrastructure.
+
+> *"Stop losing sleep over hacks. Take the Senior tranche."*
 
 ---
 
-## Phase 3: BTC Vault
+## Phase 3: Japan Institutional Access
 
 **Status: Planned**
 
-| Parameter | Value |
-|-----------|-------|
-| **Base Layer** | cbBTC Lending (1-3%) |
-| **Alpha Layer** | cbBTC collateral → USDC borrow → SOL DN (3.5-11%) |
-| **Rebalance Freq** | Weekly-Monthly (LTV management) |
-| **Decision Metric** | SOL FR + USDC borrow cost + BTC price |
+Expand access to Japanese institutional investors and qualified investors (適格投資家) through regulatory alignment and JPY-native on-ramps.
 
----
-
-## Future Considerations
-
-- **JPY stablecoin integration** for Japanese market access
-- **Multi-venue CEX support** to reduce single-exchange risk
-- **On-chain attestation** of off-chain positions
-- **Expanded consulting services** for enterprise validator operations
+- **Regulatory & audit compliance**: Structured reporting and audit trails meeting Japanese financial regulations
+- **JPY stablecoin integration**: Enable vault participation via JPY stablecoins (e.g., JPYC, progmat coin) to remove FX friction for domestic investors
+- **KYC/AML layer**: Permissioned deposit flow for compliance with Japanese fund regulations
+- **Localized reporting**: Performance reports and risk disclosures in Japanese, aligned with domestic institutional requirements
 
 ---
 
