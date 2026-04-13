@@ -37,8 +37,6 @@ Underlying strategy remains the same as Phase 1. Risk separation is enforced via
 
 > *"Stop losing sleep over hacks. Take the Senior tranche."*
 
-→ [Detailed Design: strata.md](strata.md)
-
 ---
 
 ## Phase 3: Japan Institutional Access

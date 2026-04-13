@@ -24,6 +24,7 @@
 * [Fees & How to Use](vault/fees-and-usage.md)
 * [FAQ & Glossary](vault/faq-and-glossary.md)
 * [Roadmap](vault/roadmap.md)
+* [Strata — Phase 2](vault/strata.md)
 * [Ranger Build-A-Bear Hackathon](vault/ranger-build-a-bear-hackathon.md)
 
 ## Legal
