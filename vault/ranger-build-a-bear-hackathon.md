@@ -10,7 +10,7 @@ Dawn Vault is a validator-native yield strategy being developed for Ranger Earn.
 
 ### 🎥 Demo / Pitch Video (max 3 min)
 
-**Link:** `TBD`
+**Link:** [https://youtu.be/DzEyZj0fc5g](https://youtu.be/DzEyZj0fc5g)
 
 ### 📄 Strategy Documentation
 
