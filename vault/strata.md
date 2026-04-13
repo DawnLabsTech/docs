@@ -86,25 +86,6 @@ Initial Junior capital is provided by **Dawn Labs itself**.
 
 ---
 
-## Path to $1M ARR
-
-Fee structure (same as Phase 1):
-- Performance Fee: 20% (High Water Mark)
-- Management Fee: 1% / year
-- Withdrawal Fee: 0.1%
-
-```
-$10M Senior AUM × 8% yield  × 20% perf fee = $160K / year
-$5M Junior AUM  × 20% yield × 20% perf fee = $200K / year
-→ Total ~$360K / year at $15M AUM
-
-$1M ARR requires ~$40–50M AUM
-```
-
-GTM: pitch Senior Vault directly to existing institutional pipeline (Mobcast, Pacific Meta, KEY3, etc.).
-
----
-
 ## Competitive Landscape
 
 ### TradFi Precedents
