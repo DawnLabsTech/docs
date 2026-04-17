@@ -208,8 +208,6 @@ For enterprises evaluating Raiku, Dawn Labs can:
 * **Facilitate Raiku BD engagement** and early-access discussions
 * **Integrate Raiku SDK paths** into existing Solana operations once mainnet lands
 
-See [Services](../about/services.md) or [Contact](../about/contact.md) to engage.
-
 ---
 
 {% hint style="info" %}
