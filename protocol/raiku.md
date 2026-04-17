@@ -59,20 +59,6 @@ During gaps, JIT falls back to Jito / priority fees. AOT is only usable for slot
 
 ## Cost Analysis
 
-### Protocol Take
-
-Raiku takes **5% of gross** auction revenue; the remaining **95% flows to validators**. The 5% protocol pool is further distributed:
-
-| | AOT pool | JIT pool |
-|---|---|---|
-| **Protocol take** | 5.0% of gross | 5.0% of gross |
-| **Customer rebate** | 0.50% (10% of pool) | 0.25% (5% of pool) |
-| **Validator bonus** | 1.50% (30% of pool) | 0% |
-| **Growth + buyback** | 1.50% | 2.40% |
-| **Remaining treasury** | 1.50% | 2.35% |
-
-AOT disproportionately rewards validators because AOT requires validators to **honor pre-commitments** — the bonus incentivizes reliability.
-
 ### Scenario-Based Pricing (modeled from Solana data)
 
 Raiku's own simulator uses four scenarios, each derived from historical priority-fee + MEV-tip data (not Raiku bids).
@@ -91,7 +77,7 @@ At SOL = $100:
 | Scenario | Fee/CU | Per-tx cost |
 |---|---|---|
 | Current Market | 0.10 lam | ~$0.002 |
-| Last 12 Months | 1.00 lam | ~$0.020 |
+| Last 12 Months | 1.50 lam | ~$0.030 |
 | Elevated / Congestion | 2.00 lam | ~$0.040 |
 | Bull Case (at $250 SOL) | 3.50 lam | ~$0.175 |
 
@@ -119,38 +105,47 @@ Traditional Solana priority fees typically land in **$0.00025–$0.001** during 
 ### Realistic Limitations
 
 * These guarantees apply **only to slots led by Raiku validators**
-* Current Raiku stake coverage is small (exact figure requires direct BD confirmation)
 * During non-Raiku slot gaps, applications still depend on Jito or priority fees
-* For 100% network-wide coverage, Raiku stake would need to approach majority share — not currently feasible
+* Network-wide coverage scales with Raiku validator adoption
 
 ---
 
 ## Who Should Consider Raiku
 
-### Strong Fit
+### Raiku's Stated Target Segments
 
-Enterprises and use cases where **execution failure has high economic cost**:
+Raiku's public positioning targets use cases that demand **predictable, low-latency execution**:
 
-* **HFT / market making** — losing a slot means missed edge
-* **MEV / arbitrage** — timing-critical, high fee-tolerance
-* **Perpetuals liquidations** — failed liquidations cascade into protocol risk
-* **Oracle updates** — specific-slot delivery required
-* **NFT launches** — launch-time inclusion is the product
-* **Institutional settlement** — predictable execution windows for accounting
+* **High-frequency trading platforms**
+* **AI / ML coordination systems**
+* **Decentralized physical infrastructure (DePIN)**
+* **Gaming applications requiring real-time state updates**
 
-### Marginal Fit
+### Dawn Labs' Analysis — Practical Fit
 
-* DEX / AMM swaps — works during volatility, priority fees fine in normal conditions
-* Lending routine operations — only liquidations need certainty
+Layering Raiku's positioning against observed Solana fee data, we see three tiers of practical fit:
 
-### Poor Fit
+**Strong fit** — execution failure is expensive:
+
+* MEV / arbitrage — timing-critical, high fee tolerance
+* Perpetuals liquidations — failed liquidations cascade into protocol risk
+* Oracle updates — specific-slot delivery required
+* NFT launches — launch-time inclusion is the product
+* Institutional settlement — predictable execution windows for accounting
+
+**Marginal fit**:
+
+* DEX / AMM swaps — useful during volatility, priority fees fine in normal conditions
+* Lending routine operations — only liquidation paths benefit materially
+
+**Poor fit**:
 
 * Retail payments / transfers — Raiku premium not economically justified
 * Bulk batch processing with loose timing — priority fees remain cheaper
 
 ### Customer Category Positioning
 
-Historical Solana data shows clear stratification in fee-per-CU willingness. AOT auctions will favor high-fee-tolerant categories; lower-tolerance categories risk being outbid.
+Historical Solana data shows clear stratification in fee-per-CU willingness. AOT auctions favor high-fee-tolerant categories; lower-tolerance categories risk being outbid.
 
 | Category (from Solana data) | Typical non-base fee/CU | AOT positioning |
 |---|---|---|
@@ -180,21 +175,13 @@ Before engaging with Raiku, answer these questions:
 | Phase | Status | Action |
 |---|---|---|
 | **Testnet / devnet** | Ongoing | Build against published SDK, benchmark in simulator |
-| **v2 SDK** | Late 2025 expected | Direct integration for AOT + JIT paths |
 | **Mainnet** | 2026 target | Production deployment |
-
-**Engagement today** typically runs through:
-
-* Direct contact with Raiku's BD / partnerships team (Discord, X, or docs.raiku.com)
-* Early-design-partner status for bespoke integration
-* Pricing negotiation — published rates are aspirational, enterprise rates are bilateral
 
 ---
 
 ## Limitations & Caveats
 
 * **All pricing is pre-launch.** There are no observed AOT bid prices — every figure is a proxy from Solana priority-fee history.
-* **Raiku-stake coverage is the binding constraint.** Until opt-in grows substantially, reliable all-slot coverage is impossible.
 * **The simulator is a scenario tool, not a price guarantee.** Run your own sensitivity analysis with conservative assumptions.
 * **Non-Raiku slot fallback remains necessary.** Any production integration needs a Jito / priority-fee path for gaps.
 * **JIT pricing floor (priority fee × 1.05) means Raiku is never cheaper than Jito for the same slot.** Cost advantages come from AOT discounts or avoided congestion-spike exposure.
