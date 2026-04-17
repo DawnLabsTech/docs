@@ -27,7 +27,7 @@
 * [Strata — Phase 2](vault/strata.md)
 * [Ranger Build-A-Bear Hackathon](vault/ranger-build-a-bear-hackathon.md)
 
-## Protocol
+## Partner Protocols
 
 * [Raiku](protocol/raiku.md)
 
