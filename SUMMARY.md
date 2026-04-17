@@ -30,6 +30,7 @@
 ## Partner Protocols
 
 * [Raiku](protocol/raiku.md)
+* [DoubleZero](protocol/doublezero.md)
 
 ## Legal
 
