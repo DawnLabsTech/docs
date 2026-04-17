@@ -204,9 +204,7 @@ Before engaging with Raiku, answer these questions:
 
 For enterprises evaluating Raiku, Dawn Labs can:
 
-* **Benchmark your on-chain fee profile** against the Raiku category distribution
-* **Model cost scenarios** across the four pricing regimes using your actual volume
-* **Advise on AOT vs JIT allocation** based on your execution-certainty requirements
+* **Collaboratively assess Raiku's fit for your use case** — working through your execution requirements, fee profile, and volume together to determine whether AOT, JIT, or traditional priority fees best serve each workflow
 * **Facilitate Raiku BD engagement** and early-access discussions
 * **Integrate Raiku SDK paths** into existing Solana operations once mainnet lands
 
