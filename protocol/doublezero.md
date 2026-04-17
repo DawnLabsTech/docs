@@ -2,8 +2,8 @@
 
 A reference guide for enterprises evaluating **DoubleZero Edge** — a dedicated high-performance network that delivers Solana raw market data to latency-sensitive trading operations.
 
-{% hint style="warning" %}
-**Status (April 2026)**: DoubleZero Edge is in **public beta**. Performance figures below reflect DoubleZero's published claims; no third-party audited SLA is currently available.
+{% hint style="info" %}
+**Status (April 2026)**: DoubleZero Edge is **live and generally available** with permissionless onboarding. Performance figures below reflect DoubleZero's published claims; no third-party audited SLA is currently published.
 {% endhint %}
 
 ---
@@ -119,10 +119,9 @@ Organizations with existing low-latency trading infrastructure (co-located serve
 
 Decision-makers should weigh the following before committing:
 
-* **Beta product status** — subscriber-side public beta, early adoption cycle
 * **No published SLA** — operational dashboards exist, but no formal uptime guarantee, service credits, or remediation terms
 * **Limited public audit trail** — no formal third-party security audit of Edge-specific components currently published
-* **Roadmap vs. shipping features** — the DoubleZero whitepaper describes programmable edge filtration, DDoS mitigation, state sync, and MEV support; Edge today ships only the raw shred market data feed. Evaluate against what is live, not what is planned
+* **Roadmap vs. shipping features** — the DoubleZero whitepaper describes programmable edge filtration, DDoS mitigation, state sync, and MEV support; Edge today ships the raw Solana shred market data feed. Evaluate against what is live, not what is planned
 * **New vendor dependency** — a dedicated network provider on a critical data path should be reflected in business continuity planning
 
 ### Signaled expansion
@@ -144,7 +143,7 @@ If realized, Edge repositions itself as a **cross-market data distribution platf
 2. **Do we have in-house network engineering?** If no, integration cost likely exceeds benefit
 3. **Can we absorb a read-path-only product?** Edge solves one layer — RPC procurement and transaction submission infrastructure are still required
 4. **What is our Solana leader / stake exposure?** Higher exposure amplifies Edge's value on the publisher side
-5. **Are we comfortable deploying beta-phase infrastructure?** Mission-critical use typically wants formal SLAs; Edge does not yet offer them
+5. **Are we comfortable without a formal SLA today?** Mission-critical use typically wants contractual uptime guarantees; Edge does not yet publish them
 
 ---
 
@@ -168,5 +167,5 @@ For enterprises evaluating DoubleZero Edge, Dawn Labs can:
 ---
 
 {% hint style="info" %}
-**Last reviewed**: April 2026. DoubleZero Edge is in active development; re-verify status and figures with official channels before making commitments.
+**Last reviewed**: April 2026. Figures and roadmap items may change; re-verify with DoubleZero's official channels before making commitments.
 {% endhint %}
