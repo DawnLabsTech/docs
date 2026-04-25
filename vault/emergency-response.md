@@ -31,25 +31,62 @@ Automatically exit positions from a protocol when any of the following condition
 | Trigger | Threshold | Action |
 |---------|-----------|--------|
 | TVL crash | -20% / 1 hour | Full withdrawal from affected protocol |
-| Oracle deviation (warning) | ≥ 50bps | Alert only (no auto-exit) |
-| Oracle deviation (critical) | ≥ 100bps | Full withdrawal from **all** active protocols |
 | Consecutive balance-check failures | 3 times | Disable affected protocol |
 
 After exit, a 24-hour cooldown period applies before automatic re-enablement is attempted.
 
-**How it works.** A scheduled task runs every 60 seconds across all active lending protocols (currently Kamino and Jupiter Lend) and performs three checks per cycle:
+**How it works.** A scheduled task runs every 60 seconds across all active lending protocols (currently Kamino and Jupiter Lend) and performs two checks per cycle:
 
 1. **TVL** — fetched from the Kamino market metrics endpoint (or Jupiter's earn-tokens endpoint as a proxy). Each cycle's TVL is appended to a rolling history bounded by the 1-hour window; if the oldest sample in-window is ≥20% above the latest, the protocol is tripped.
 2. **Withdrawal health** — the protocol's `getBalance()` is called as a liveness probe. Each failure increments a per-protocol counter; success resets it. Three consecutive failures trip the protocol on the assumption that withdrawals are unlikely to succeed either.
-3. **USDC oracle** — USDC price is fetched from the Jupiter Price API and compared to $1.00. ≥50bps deviation emits a warning alert; ≥100bps trips every active protocol simultaneously, since a USDC depeg breaks the borrow leg of every position.
 
-When tripped, the breaker invokes an `onTrip` callback (wired by the orchestrator to the protocol's emergency withdrawal), records an `ALERT` event, and adds the protocol to a disabled set so subsequent cycles skip it. The 24-hour cooldown is checked on every cycle: once elapsed, the protocol is removed from the disabled set, the failure counter is cleared, and monitoring resumes. A manual `enableProtocol()` override is also available for operator intervention.
+Oracle anomaly detection — previously a third check inside the circuit breaker — has been split out into a dedicated monitor (see A5) that uses multi-source cross-checks rather than a single price feed.
+
+When tripped, the breaker invokes an `onTrip` callback (wired by the orchestrator to the protocol's emergency withdrawal), records an `ALERT` event, and adds the protocol to a disabled set so subsequent cycles skip it. The 24-hour cooldown is checked on every cycle: once elapsed, the protocol is removed from the disabled set, the failure counter is cleared, and monitoring resumes. A public `trip(name, reason)` entry point lets external monitors (e.g. A5) request a circuit-breaker trip through the same code path. A manual `enableProtocol()` override is also available for operator intervention.
 
 ### A4. Kill Switch (Implemented)
 
 A manual last-resort mechanism for humans to immediately halt all operations. Detected on the next health check (every 5 seconds), triggering the full emergency exit sequence for all positions.
 
 **How it works.** The bot's 5-second health-check loop calls `checkKillSwitch()` first, before any other guardrail. The check is a simple file existence test against `/tmp/vault-kill` (overridable via the `VAULT_KILL_SWITCH_PATH` env var) — operators activate it by SSH-ing into the host and running `touch /tmp/vault-kill`. When the file is detected: a critical alert is fired, an `EMERGENCY_EXIT` action with `reason: 'kill_switch'` is dispatched (which unwinds the base delta-neutral position), the orchestrator stops scheduled tasks, and the process exits with code 1 so the supervisor (Docker / systemd) does not auto-restart. A file-based trigger was chosen over an API endpoint or env var so the path is reachable even when the bot's internal state machine or HTTP server is wedged.
+
+### A5. Oracle Anomaly Detection (Implemented)
+
+Detects when the prices Kamino uses for liquidation diverge from independent reference sources. The dangerous case is the oracle silently over-pricing the collateral relative to actual market depth — health-rate readings look fine, but the real liquidation buffer is much smaller than reported.
+
+| Check | Source comparison | Default threshold | Severity / Action |
+|-------|-------------------|-------------------|-------------------|
+| Stable depeg | Kamino reserve oracle vs $1.00 | ≥ 50 bps / ≥ 100 bps | Warn / Critical → trip all protocols + emergency-deleverage every Multiply position |
+| Cross-source divergence | Kamino implied collateral/debt ratio vs Jupiter swap quote | ≥ 50 bps / ≥ 100 bps | Warn / Critical → emergency-deleverage the affected market |
+| Collateral over-pricing (directional) | Kamino oracle > Jupiter quote | ≥ 75 bps | Critical → emergency-deleverage the affected market (tighter than the symmetric threshold because this direction is the dangerous one) |
+| Kamino stale cache | Reserve `stored` vs `oracle` price | ≥ 100 bps | Warning only (observability — points to refresh delay) |
+| Pyth staleness | Hermes `publishTime` | > 60 s old | Warning only |
+| Pyth confidence | Pyth `conf / price` | > 1.0 % | Warning only |
+
+**Sustained gate.** Critical actions only fire after the condition has held for **3 consecutive samples** (≈15 minutes at the default 5-minute cadence). A single sample produces a critical event (visible in logs and event ledger) but its `sustained` flag is false until the gate is satisfied; the orchestrator gates trip / deleverage dispatch on `sustained === true`. Transient fetch failures (Jupiter / Pyth API hiccups) preserve the counter rather than resetting — only a cycle that successfully evaluates the condition and finds it OK clears the counter. Warning-tier events still emit on the first sample, so operators see the situation immediately even though automated action waits.
+
+**How it works.** A scheduled task runs every 5 minutes (aligned with `kamino-multiply-health`) and, for each Multiply market, reads the on-chain Kamino reserve state for both collateral and debt: `getOracleMarketPrice()` (the fresh oracle price) and `getReserveMarketPrice()` (the cached price Kamino uses for liquidation math until the next refresh). Each market then runs four checks:
+
+1. **Stable depeg** — for any side whose mint is a known $1.00-pegged stablecoin (USDC, USDT, PYUSD, USDG), the Kamino oracle is compared to the peg.
+2. **Kamino stored vs oracle** — the stored/oracle delta. A wide delta means Kamino's internal cache hasn't caught up to a moving oracle, so health-rate calc is running on a stale price.
+3. **Cross-source divergence** — for non-stable collateral, Jupiter is asked for a real swap quote (~$100 of collateral → debt token). The Kamino-implied ratio (`collOracle / debtOracle`) is compared to the Jupiter quote. The directional check (Kamino over-prices vs DEX) uses a tighter threshold because that's the failure mode that silently inflates health rate.
+4. **Pyth health (optional)** — for any mint with a configured Pyth Hermes price feed (`ORACLE_PYTH_PRICE_IDS` env), staleness and confidence-interval width are checked as independent oracle health signals.
+
+Action dispatch lives in the orchestrator. `stable-depeg` events are NAV-wide (the borrow leg of every position is suspect) so they trip the circuit breaker for all protocols and emergency-deleverage every Multiply adapter. `cross-source-dev` events are market-specific. Pyth and stale-cache warnings are alert-only — they're early-warning signals, not action triggers, since acting on them automatically would create false-positive churn.
+
+**Configuration.** All thresholds and the cadence live under `oracleMonitor` in `config/default.json`; the bot picks up changes via the file-watcher hot reload. Pyth Hermes monitoring is opt-in via the `ORACLE_PYTH_PRICE_IDS` environment variable, set to a comma-separated `mint:priceId` list (e.g. `EPjFWdd5...:0xeaa020c6...,DAwNds...:0xabc...`). When the env is unset or empty, Pyth checks are skipped while Kamino-internal and Jupiter cross-source checks continue unaffected.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `checkIntervalMs` | 300_000 (5 min) | Cycle cadence — aligned with `kamino-multiply-health` |
+| `sustainedSamples` | 3 | Consecutive samples a critical condition must hold before automated action |
+| `usdcDeviationWarnBps` / `...CriticalBps` | 50 / 100 | Stable depeg thresholds |
+| `kaminoStaleStoredBps` | 100 | Stored-vs-oracle delta that flags a stale Kamino cache |
+| `onycCrossSourceWarnBps` / `...CriticalBps` | 50 / 100 | Symmetric cross-source divergence thresholds |
+| `onycOverpriceCriticalBps` | 75 | Tighter directional threshold for Kamino over-pricing collateral |
+| `pythStalenessSec` | 60 | Maximum tolerated `publishTime` age |
+| `pythConfidencePct` | 1.0 | Maximum tolerated `conf / price` ratio |
+| `alertCooldownMs` | 1_800_000 (30 min) | Suppresses repeat Telegram alerts for the same `(kind, market, mint, severity)` |
 
 ## B. Decision
 
@@ -70,13 +107,13 @@ ONyc/USDC Multiply Position
 ├── Collateral Asset: ONyc
 │   ├── Issuer: Onre → Operations halt / Redemption freeze
 │   ├── Native Yield (~10.25%) → Yield decline / Stop
-│   ├── Depeg → Direct liquidation risk
-│   └── DEX Liquidity (ONyc/USDC) → Exit impossible
+│   ├── Depeg → Direct liquidation risk (Multiply Risk Scorer + A5 cross-source)
+│   └── DEX Liquidity (ONyc/USDC) → Exit impossible (A5 cross-source picks up the gap between Kamino oracle and DEX)
 │
 ├── Borrowed Asset: USDC
-│   ├── Oracle (Pyth/Switchboard) → Price feed anomaly
-│   ├── Borrow Rate → Spike causing negative carry
-│   └── USDC Depeg → NAV-wide impact
+│   ├── Oracle (Pyth/Switchboard) → Price feed anomaly (A5)
+│   ├── Borrow Rate → Spike causing negative carry (A2)
+│   └── USDC Depeg → NAV-wide impact (A5 stable-depeg)
 │
 ├── Infrastructure
 │   ├── Solana RPC (Helius) → TX submission failure
@@ -94,11 +131,12 @@ ONyc/USDC Multiply Position
 | Failure Point | Impact | Detection | Response |
 |--------------|--------|-----------|----------|
 | Kamino contract hack | Loss of deposited assets | A1, A3 (TVL crash) | Kill switch → Notify Kamino |
-| ONyc depeg (>2%) | Health rate decline → Liquidation | Multiply Risk Scorer | Staged deleverage |
-| ONyc DEX liquidity vanishes | Unable to swap during deleverage | C1 (periodic simulation) | Split withdrawal, raise slippage cap |
+| ONyc depeg (>2%) | Health rate decline → Liquidation | Multiply Risk Scorer + A5 (cross-source) | Staged deleverage; A5 sustained critical → emergency deleverage |
+| ONyc DEX liquidity vanishes | Unable to swap during deleverage | C1 (periodic simulation) + A5 cross-source (Kamino oracle vs DEX gap widens) | Split withdrawal, raise slippage cap |
+| USDC depeg | NAV-wide impact (every borrow leg) | A5 stable-depeg | Sustained critical → trip all protocols + emergency deleverage every Multiply position |
 | Onre operations halt | ONyc unredeemable, yield stops | Manual monitoring, contact Onre | Full exit |
 | Borrow rate spike | Negative carry erodes NAV | A2 (spike detection) | Auto deleverage |
-| Pyth oracle anomaly | Incorrect liquidation or misjudgment | A3 (deviation detection) | Circuit breaker trips |
+| Pyth oracle anomaly | Incorrect liquidation or misjudgment | A5 (multi-source cross-check, staleness, confidence) | Sustained critical → emergency deleverage / circuit breaker trips |
 | Helius RPC outage | TX submission failure | Guardrails (consecutive failure detection) | Failover to backup RPC |
 | Jupiter swap route down | Unable to deleverage | C4 (periodic dry run) | Alternative route or wait |
 
