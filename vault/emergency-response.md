@@ -1,178 +1,178 @@
 # Emergency Response
 
-Dawn Vault の緊急時対応体制。プロトコルのエクスプロイト、担保資産の急落、ネットワーク障害など、資産毀損リスクが発生した際に迅速かつ適切に対応するための方針・手順・連絡網を定義する。
+This document defines Dawn Vault's emergency response framework — the policies, procedures, and communication channels for responding swiftly and appropriately when asset-impacting risks arise, such as protocol exploits, collateral crashes, or network outages.
 
-## A. Detection — 検知
+## A. Detection
 
-異常を可能な限り早く捕捉する。複数の検知レイヤーを並走させ、単一障害点を排除する。
+Catch anomalies as early as possible. Multiple detection layers run in parallel to eliminate single points of failure.
 
-### A1. プロトコル異常検知（計画中）
+### A1. Protocol Anomaly Detection (Planned)
 
-利用プロトコル（Kamino、Jupiter 等）のコントラクトにおける異常な大量送金・権限変更を監視する。外部セキュリティフィード（Hypernative、Forta Network 等）との統合も検討中。
+Monitor contracts of utilized protocols (Kamino, Jupiter, etc.) for abnormal large transfers or permission changes. Integration with external security feeds (Hypernative, Forta Network, etc.) is also under consideration.
 
-### A2. 借入金利スパイク検知（計画中）
+### A2. Borrow Rate Spike Detection (Planned)
 
-Kamino Multiply の借入金利が急騰し、担保利回りを上回る逆ザヤ状態が一定時間継続した場合にアラートを発報し、自動デレバレッジを開始する。
+When Kamino Multiply borrow rates spike and exceed collateral yield (negative carry) for a sustained period, trigger an alert and initiate automatic deleverage.
 
-### A3. Protocol Circuit Breaker（実装済）
+### A3. Protocol Circuit Breaker (Implemented)
 
-以下の条件で自動的にプロトコルからの撤退を実行する。
+Automatically exit positions from a protocol when any of the following conditions are met:
 
-| トリガー | 閾値 | 動作 |
-|---------|------|------|
-| TVL 急落 | -20% / 1 時間 | 該当プロトコルから全額撤退 |
-| オラクル乖離 | ≥ 100bps | 該当プロトコルから全額撤退 |
-| 引き出し連続失敗 | 3 回 | 該当プロトコルを無効化 |
+| Trigger | Threshold | Action |
+|---------|-----------|--------|
+| TVL crash | -20% / 1 hour | Full withdrawal from affected protocol |
+| Oracle deviation | ≥ 100bps | Full withdrawal from affected protocol |
+| Consecutive withdrawal failures | 3 times | Disable affected protocol |
 
-撤退後は 24 時間のクールダウン期間を経て自動復旧を試行する。
+After exit, a 24-hour cooldown period applies before automatic re-enablement is attempted.
 
-### A4. Kill Switch（実装済）
+### A4. Kill Switch (Implemented)
 
-人間が判断して即座に全停止するための最終手段。
+A manual last-resort mechanism for humans to immediately halt all operations.
 
 ```bash
 ssh vault && touch /tmp/vault-kill
 ```
 
-次のヘルスチェック（5 秒毎）で検知され、全ポジションの緊急撤退シーケンスが自動実行される。
+Detected on the next health check (every 5 seconds), triggering the full emergency exit sequence for all positions.
 
-## B. Decision — 判断
+## B. Decision
 
-検知後、何をどの順序で実行するかを事前に定義しておく。
+Pre-define what to do and in what order after detection.
 
-### B1. 依存関係マップ
+### B1. Dependency Map
 
-Vault のポジションが依存するプロトコル・資産・インフラの関係図。どこが壊れたら何に波及するかを明示する。
+A relationship diagram of protocols, assets, and infrastructure that vault positions depend on. Makes explicit what breaks when each component fails.
 
 ```
-ONyc/USDC Multiply ポジション
+ONyc/USDC Multiply Position
 │
 ├── Kamino Protocol
-│   ├── スマートコントラクト → ハック・バグ
-│   ├── Multiply SDK → ループ実行不能
-│   └── マーケット設定（RWA Market） → パラメータ変更・凍結
+│   ├── Smart Contract → Hack / Bug
+│   ├── Multiply SDK → Loop execution failure
+│   └── Market Config (RWA Market) → Parameter change / Freeze
 │
-├── 担保資産: ONyc
-│   ├── 発行体: Onre → 運営停止・償還停止
-│   ├── Native Yield (~10.25%) → 利回り低下・停止
-│   ├── Depeg → 清算リスク直結
-│   └── DEX 流動性（ONyc/USDC） → 撤退不能
+├── Collateral Asset: ONyc
+│   ├── Issuer: Onre → Operations halt / Redemption freeze
+│   ├── Native Yield (~10.25%) → Yield decline / Stop
+│   ├── Depeg → Direct liquidation risk
+│   └── DEX Liquidity (ONyc/USDC) → Exit impossible
 │
-├── 借入資産: USDC
-│   ├── オラクル（Pyth/Switchboard） → 価格フィード異常
-│   ├── 借入金利 → 急騰で逆ザヤ
-│   └── USDC 自体の Depeg → 全体 NAV に波及
+├── Borrowed Asset: USDC
+│   ├── Oracle (Pyth/Switchboard) → Price feed anomaly
+│   ├── Borrow Rate → Spike causing negative carry
+│   └── USDC Depeg → NAV-wide impact
 │
-├── インフラ
-│   ├── Solana RPC (Helius) → TX 送信不能
-│   ├── Solana ネットワーク → 混雑・停止
-│   └── Jupiter (swap 経路) → デレバレッジ時の swap 不能
+├── Infrastructure
+│   ├── Solana RPC (Helius) → TX submission failure
+│   ├── Solana Network → Congestion / Halt
+│   └── Jupiter (swap route) → Swap failure during deleverage
 │
-└── 外部波及シナリオ
-    ├── 他プロトコルのハック → Kamino TVL 急落・金利急騰
-    ├── Solana 全体の DeFi パニック → 流動性蒸発
-    └── ステーブル不安 → USDC/ONyc 両方に影響
+└── External Contagion Scenarios
+    ├── Other protocol hack → Kamino TVL crash / Rate spike
+    ├── Solana-wide DeFi panic → Liquidity evaporation
+    └── Stablecoin uncertainty → Impact on both USDC and ONyc
 ```
 
-#### 障害点別の対応表
+#### Response Table by Failure Point
 
-| 障害点 | 影響 | 検知手段 | 対応 |
-|-------|------|---------|------|
-| Kamino コントラクトのハック | 預入資産の喪失 | A1, A3（TVL 急落） | キルスイッチ → Kamino に通報 |
-| ONyc depeg (>2%) | Health Rate 低下 → 清算 | Multiply Risk Scorer | 段階的デレバレッジ |
-| ONyc DEX 流動性消失 | デレバレッジ時に swap 不能 | C1（定期シミュレーション） | 小分け撤退、slippage 上限引き上げ |
-| Onre 運営停止 | ONyc 償還不能、利回り停止 | 手動監視、Onre への連絡 | 全撤退 |
-| 借入金利急騰 | 逆ザヤで NAV 毀損 | A2（スパイク検知） | 自動デレバレッジ |
-| Pyth オラクル異常 | 誤った清算 or 誤った判断 | A3（乖離検知） | サーキットブレーカー発動 |
-| Helius RPC 障害 | TX 送信不能 | Guardrails（連続失敗検知） | バックアップ RPC へフェイルオーバー |
-| Jupiter swap 経路断 | デレバレッジ不能 | C4（定期ドライラン） | 代替経路 or 待機 |
+| Failure Point | Impact | Detection | Response |
+|--------------|--------|-----------|----------|
+| Kamino contract hack | Loss of deposited assets | A1, A3 (TVL crash) | Kill switch → Notify Kamino |
+| ONyc depeg (>2%) | Health rate decline → Liquidation | Multiply Risk Scorer | Staged deleverage |
+| ONyc DEX liquidity vanishes | Unable to swap during deleverage | C1 (periodic simulation) | Split withdrawal, raise slippage cap |
+| Onre operations halt | ONyc unredeemable, yield stops | Manual monitoring, contact Onre | Full exit |
+| Borrow rate spike | Negative carry erodes NAV | A2 (spike detection) | Auto deleverage |
+| Pyth oracle anomaly | Incorrect liquidation or misjudgment | A3 (deviation detection) | Circuit breaker trips |
+| Helius RPC outage | TX submission failure | Guardrails (consecutive failure detection) | Failover to backup RPC |
+| Jupiter swap route down | Unable to deleverage | C4 (periodic dry run) | Alternative route or wait |
 
-### B2. 撤退優先順位（計画中）
+### B2. Withdrawal Priority Order (Planned)
 
-流動性が薄い順に、どのポジションから優先して撤退するかを事前に定義する。全額一括ではなく、流動性が残っているうちに優先度の高いポジションから段階的に撤退する。
+Pre-define which positions to exit first based on liquidity depth. Exit illiquid positions first while liquidity remains, rather than attempting a single bulk withdrawal.
 
-### B3. 逆ザヤ自動デレバレッジ（計画中）
+### B3. Negative Carry Auto-Deleverage (Planned)
 
-借入金利が担保利回りを上回る状態が一定時間継続した場合、自動的にポジションを縮小する。
+Automatically reduce position size when borrow rates exceed collateral yield for a sustained period.
 
-### B4. NAV 凍結判断基準（Strata 移行時に実装）
+### B4. NAV Freeze Criteria (To be implemented at Strata migration)
 
-資産価値が不確定な状況で NAV 計算を凍結し、Instant Redemption を停止する条件を定義する。情報優位な LP が先行撤退することによる損失の不公平な社会化を防ぐ。
+Define conditions under which NAV calculation is frozen and Instant Redemption is disabled. Prevents information-advantaged LPs from front-running exits, which would unfairly socialize losses onto remaining participants.
 
-## C. Execution — 実行
+## C. Execution
 
-判断後に確実にポジションを閉じるための体制。
+Ensure positions can actually be closed after a decision is made.
 
-### C1. 流動性枯渇シミュレーション（計画中）
+### C1. Liquidity Depletion Simulation (Planned)
 
-ONyc/USDC の DEX 流動性が極端に薄い状況で、Multiply デレバレッジが完了するかを定期的にテストする。
+Periodically test whether Multiply deleverage can complete when ONyc/USDC DEX liquidity is extremely thin.
 
-### C2. 段階的撤退ロジック（計画中）
+### C2. Staged Withdrawal Logic (Planned)
 
-一括全額ではなく、流動性がある間に分割で撤退する仕組み。
+Split withdrawals into tranches rather than attempting a single bulk exit, executing while liquidity remains available.
 
-### C3. TX 失敗時のリトライ強化（部分実装）
+### C3. TX Failure Retry Enhancement (Partially Implemented)
 
-Solana ネットワーク混雑時に priority fee 自動引き上げ・Jito bundle を活用する。
+Automatic priority fee escalation and Jito bundle utilization during Solana network congestion.
 
-### C4. 緊急撤退ドライラン（計画中）
+### C4. Emergency Exit Dry Run (Planned)
 
-定期的に本番環境で小額の撤退 → 再投入を行い、撤退経路が生きていることを確認する。
+Periodically execute small-amount withdrawals and re-deposits in the production environment to verify that exit routes remain functional.
 
-## D. Communication — 連絡網
+## D. Communication
 
-### D1. 内部エスカレーション
+### D1. Internal Escalation
 
 ```
-検知（Bot 自動 Telegram 通知）
+Detection (Bot auto Telegram notification)
   │
-  ├─ 即時: Yutaro に Telegram アラート
+  ├─ Immediate: Telegram alert to Yutaro
   │
-  ├─ +5 分以内: 影響範囲の初期判定
+  ├─ Within +5 min: Initial impact assessment
   │
-  └─ +10 分以内: 対応方針決定（全撤退 / 部分縮小 / 静観）
+  └─ Within +10 min: Response decision (full exit / partial reduction / monitor)
 ```
 
-### D2. 外部通報先
+### D2. External Notification Targets
 
-| 通報先 | いつ通報するか | 目的 |
-|-------|--------------|------|
-| **Kamino** | 担保資産・オラクル・マーケットに異常 | 情報共有・freeze 要請 |
-| **Jupiter** | swap / Lending に異常 | 経路確認・状況共有 |
-| **Helius** | RPC 異常・Solana 障害 | インフラ状況確認 |
-| **Onre (ONyc)** | ONyc depeg・償還停止 | 償還可否の確認 |
-| **LP 投資家** | NAV に影響が出た場合 | 状況報告・方針共有 |
+| Target | When to Notify | Purpose |
+|--------|---------------|---------|
+| **Kamino** | Collateral, oracle, or market anomaly | Information sharing / Freeze request |
+| **Jupiter** | Swap / Lending anomaly | Route verification / Status sharing |
+| **Helius** | RPC anomaly / Solana outage | Infrastructure status check |
+| **Onre (ONyc)** | ONyc depeg / Redemption halt | Redemption availability check |
+| **LP Investors** | When NAV is impacted | Status report / Policy communication |
 
 {% hint style="info" %}
-各通報先の具体的な連絡先（Discord、メール、セキュリティ窓口等）は内部ドキュメントで管理する。
+Specific contact details (Discord, email, security contacts) for each target are maintained in internal documentation.
 {% endhint %}
 
-### D3. LP 向けインシデント報告テンプレート
+### D3. LP Incident Report Template
 
 ```
-【速報】[日時] 異常検知
+[ALERT] [datetime] Anomaly Detected
 
-■ 何が起きたか:
-■ Vault への影響: NAV 変動 / ポジション状況
-■ 対応状況: 撤退済 / 縮小中 / 監視中
-■ 次回更新: [時刻]
+- What happened:
+- Vault impact: NAV change / Position status
+- Response status: Exited / Reducing / Monitoring
+- Next update: [time]
 ```
 
 ## Implementation Roadmap
 
-### Phase 1 — 今すぐ（コスト低・効果高）
+### Phase 1 — Immediate (Low cost, high impact)
 
-- D2 の連絡先リストを収集・保管
-- D3 のテンプレートを関係者に共有
-- C1 の流動性シミュレーションを手動で一度実行
+- Collect and store contact list for D2
+- Share D3 template with stakeholders
+- Run C1 liquidity simulation manually once
 
-### Phase 2 — 次スプリント（開発が必要）
+### Phase 2 — Next Sprint (Development required)
 
-- A2: 借入金利スパイク検知の実装
-- B2: 撤退優先順位の設定値化
+- A2: Borrow rate spike detection
+- B2: Withdrawal priority order as config values
 
-### Phase 3 — 中期（Strata / LP 拡大前）
+### Phase 3 — Medium Term (Before Strata / LP expansion)
 
-- A1: プロトコル異常検知・外部セキュリティフィード統合
-- B4: NAV 凍結・Instant Redemption 停止機能
-- C2: 段階的撤退ロジック
+- A1: Protocol anomaly detection / External security feed integration
+- B4: NAV freeze / Instant Redemption disable functionality
+- C2: Staged withdrawal logic
