@@ -10,9 +10,17 @@ Catch anomalies as early as possible. Multiple detection layers run in parallel 
 
 Monitor contracts of utilized protocols (Kamino, Jupiter, etc.) for abnormal large transfers or permission changes. Integration with external security feeds (Hypernative, Forta Network, etc.) is also under consideration.
 
-### A2. Borrow Rate Spike Detection (Planned)
+### A2. Borrow Rate Spike Detection (Implemented)
 
-When Kamino Multiply borrow rates spike and exceed collateral yield (negative carry) for a sustained period, trigger an alert and initiate automatic deleverage.
+Borrow rates are sampled every 5 minutes and evaluated against three independent conditions. Each condition emits an alert and feeds the deleverage policy (see B3).
+
+| Condition | Default Threshold | Severity | Resulting Action |
+|-----------|-------------------|----------|------------------|
+| Negative spread (effective APY below threshold) | `effective APY < 0` | Critical | Full emergency deleverage |
+| Rate of change (1-hour window) | `+500 bps / hour` | Warning | Soft deleverage (-20% size) |
+| Absolute borrow APY | `> 20% annualized` | Warning | Soft deleverage (-20% size) |
+
+Duplicate alerts are suppressed by a 30-minute cooldown per severity level (critical alerts always fire). Detection currently fires on the latest single sample; a "sustained for N minutes" gate is not yet implemented and may be added to suppress one-off transient spikes.
 
 ### A3. Protocol Circuit Breaker (Implemented)
 
@@ -85,9 +93,14 @@ ONyc/USDC Multiply Position
 
 Pre-define which positions to exit first based on liquidity depth. Exit illiquid positions first while liquidity remains, rather than attempting a single bulk withdrawal.
 
-### B3. Negative Carry Auto-Deleverage (Planned)
+### B3. Negative Carry Auto-Deleverage (Implemented)
 
-Automatically reduce position size when borrow rates exceed collateral yield for a sustained period.
+Borrow rate spikes are routed through the same staged deleverage policy used for health and risk-score breaches, prioritized by severity:
+
+- **Critical (negative spread)** — when effective APY drops below the threshold (default 0, i.e. borrow yield exceeds collateral yield), the position is fully unwound via `emergencyDeleverage()`.
+- **Warning (rate of change / absolute threshold)** — position size is reduced by 20%; if a health-rate or risk-score reduction is also active, the largest of the three reductions is taken (not summed).
+
+Caveat: detection is based on the latest sample with a 30-minute alert cooldown. A sustained-period gate (e.g. negative carry held for N consecutive samples) is not yet implemented — see A2.
 
 ### B4. NAV Freeze Criteria (To be implemented at Strata migration)
 
