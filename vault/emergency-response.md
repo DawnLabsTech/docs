@@ -136,22 +136,3 @@ Detection (Bot auto Telegram notification)
 | **Helius** | RPC anomaly / Solana outage | Infrastructure status check |
 | **Onre (ONyc)** | ONyc depeg / Redemption halt | Redemption availability check |
 | **LP Investors** | When NAV is impacted | Status report / Policy communication |
-
-## Implementation Roadmap
-
-### Phase 1 — Immediate (Low cost, high impact)
-
-- Collect and store contact list for D2
-- Share D3 template with stakeholders
-- Run C1 liquidity simulation manually once
-
-### Phase 2 — Next Sprint (Development required)
-
-- A2: Borrow rate spike detection
-- B2: Withdrawal priority order as config values
-
-### Phase 3 — Medium Term (Before Strata / LP expansion)
-
-- A1: Protocol anomaly detection / External security feed integration
-- B4: NAV freeze / Instant Redemption disable functionality
-- C2: Staged withdrawal logic
