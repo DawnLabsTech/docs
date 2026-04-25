@@ -137,10 +137,6 @@ Detection (Bot auto Telegram notification)
 | **Onre (ONyc)** | ONyc depeg / Redemption halt | Redemption availability check |
 | **LP Investors** | When NAV is impacted | Status report / Policy communication |
 
-{% hint style="info" %}
-Specific contact details (Discord, email, security contacts) for each target are maintained in internal documentation.
-{% endhint %}
-
 ### D3. LP Incident Report Template
 
 ```
