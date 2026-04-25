@@ -10,11 +10,19 @@ Catch anomalies as early as possible. Multiple detection layers run in parallel 
 
 Monitor contracts of utilized protocols (Kamino, Jupiter, etc.) for abnormal large transfers or permission changes. Integration with external security feeds (Hypernative, Forta Network, etc.) is also under consideration as a longer-term complement.
 
-**Phase 1 — Upgrade Authority Monitoring (Implemented).** The Kamino Lending program's upgrade authority is the highest-signal change to watch: any change here means a new code path could be deployed against existing user funds, so detecting it within seconds is critical.
+**Phase 1 — Upgrade Authority Monitoring (Live since 2026-04-25).** The Kamino Lending program's upgrade authority is the highest-signal change to watch: any change here means a new code path could be deployed against existing user funds, so detecting it within seconds is critical.
 
 | Trigger | Threshold | Action |
 |---------|-----------|--------|
 | Kamino Lending program upgrade authority change | Any change (or transition to/from frozen) | Critical Telegram alert + `ANOMALY` event recorded |
+
+**Currently watched (on-chain, publicly verifiable):**
+
+| Field | Value |
+|-------|-------|
+| Program ID | `KLend2g3cP87fffoy8q1mQqGKjrxjC8boSyAYavgmjD` |
+| ProgramData PDA (BPF Loader Upgradeable) | `9uSbGW1y9H5Av6H5TKxQ1wnFApSq2t3oEpfF2YfjDQGA` |
+| Baseline upgrade authority (as of go-live) | `GzFgdRJXmawPhGeBsyRCDLx4jAKPsvbUqoqitzppkzkW` |
 
 **How it works.** The bot derives the BPF Loader Upgradeable **ProgramData PDA** for the Kamino Lending program (this is the on-chain account that stores the `upgrade_authority` field) and monitors it through two parallel channels:
 
@@ -33,7 +41,7 @@ This payload-agnostic design means the system continues to work even if Helius c
 
 | Phase | Detection | Status |
 |-------|-----------|--------|
-| Phase 1 | Kamino Lending program upgrade authority change | Implemented |
+| Phase 1 | Kamino Lending program upgrade authority change | Live (2026-04-25) |
 | Phase 2 | Large transfers from Kamino USDC reserve / ONyc collateral vaults (>20% of reserve in 1h = warning, >40% = critical) | Planned |
 | Phase 2 | Reserve config changes (LTV, oracle source, liquidation bonus) | Planned |
 | Phase 3 | Jupiter Lend program coverage | Planned |
