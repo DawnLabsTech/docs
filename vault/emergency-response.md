@@ -137,17 +137,6 @@ Detection (Bot auto Telegram notification)
 | **Onre (ONyc)** | ONyc depeg / Redemption halt | Redemption availability check |
 | **LP Investors** | When NAV is impacted | Status report / Policy communication |
 
-### D3. LP Incident Report Template
-
-```
-[ALERT] [datetime] Anomaly Detected
-
-- What happened:
-- Vault impact: NAV change / Position status
-- Response status: Exited / Reducing / Monitoring
-- Next update: [time]
-```
-
 ## Implementation Roadmap
 
 ### Phase 1 — Immediate (Low cost, high impact)
