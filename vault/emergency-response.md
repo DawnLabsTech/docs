@@ -6,9 +6,38 @@ This document defines Dawn Vault's emergency response framework — the policies
 
 Catch anomalies as early as possible. Multiple detection layers run in parallel to eliminate single points of failure.
 
-### A1. Protocol Anomaly Detection (Planned)
+### A1. Protocol Anomaly Detection (Partially Implemented)
 
-Monitor contracts of utilized protocols (Kamino, Jupiter, etc.) for abnormal large transfers or permission changes. Integration with external security feeds (Hypernative, Forta Network, etc.) is also under consideration.
+Monitor contracts of utilized protocols (Kamino, Jupiter, etc.) for abnormal large transfers or permission changes. Integration with external security feeds (Hypernative, Forta Network, etc.) is also under consideration as a longer-term complement.
+
+**Phase 1 — Upgrade Authority Monitoring (Implemented).** The Kamino Lending program's upgrade authority is the highest-signal change to watch: any change here means a new code path could be deployed against existing user funds, so detecting it within seconds is critical.
+
+| Trigger | Threshold | Action |
+|---------|-----------|--------|
+| Kamino Lending program upgrade authority change | Any change (or transition to/from frozen) | Critical Telegram alert + `ANOMALY` event recorded |
+
+**How it works.** The bot derives the BPF Loader Upgradeable **ProgramData PDA** for the Kamino Lending program (this is the on-chain account that stores the `upgrade_authority` field) and monitors it through two parallel channels:
+
+1. **Helius webhook (primary, low latency).** A webhook configured against the ProgramData PDA address fires whenever that account is touched (which only happens on program upgrades — normal program invocations do not load the PDA into a transaction's account keys). The webhook hits a dedicated `POST /webhook/helius` endpoint authenticated by a separate `HELIUS_WEBHOOK_AUTH` bearer (independent of the dashboard auth token), and triggers an immediate check.
+2. **Scheduled polling (fallback, every 1 hour).** Even if the webhook is misconfigured or Helius is degraded, a polling task in the orchestrator's scheduler runs the same check. This bounds detection latency to at most ~1 hour in the worst case.
+
+In both cases the detection logic is identical and intentionally **does not parse the webhook payload** — instead, the bot re-fetches the ProgramData account directly via `getAccountInfo`, parses the `upgrade_authority` field from the bincode-serialized account data, and compares it against the baseline persisted in a SQLite `anomaly_baseline` table. The baseline is seeded once at bot startup. On divergence:
+
+- A critical-level Telegram alert is fired with both the previous and current authority pubkeys (or `<frozen>` if the program transitioned to having no upgrade authority).
+- An `ANOMALY` event is recorded in the events ledger with `metadata.action = 'anomaly_upgrade_authority_change'` so it appears in the dashboard separately from generic alerts.
+- The baseline is then updated to the new value so subsequent checks don't re-fire on the same change. Operator follow-up is expected to investigate whether the change was legitimate (e.g. announced Kamino upgrade) or hostile.
+
+This payload-agnostic design means the system continues to work even if Helius changes its webhook payload format or if the watched address starts receiving unrelated traffic.
+
+**Roadmap for A1**
+
+| Phase | Detection | Status |
+|-------|-----------|--------|
+| Phase 1 | Kamino Lending program upgrade authority change | Implemented |
+| Phase 2 | Large transfers from Kamino USDC reserve / ONyc collateral vaults (>20% of reserve in 1h = warning, >40% = critical) | Planned |
+| Phase 2 | Reserve config changes (LTV, oracle source, liquidation bonus) | Planned |
+| Phase 3 | Jupiter Lend program coverage | Planned |
+| Phase 3 | Anomaly event timeline in the frontend dashboard | Planned |
 
 ### A2. Borrow Rate Spike Detection (Implemented)
 
