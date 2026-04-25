@@ -28,13 +28,7 @@ After exit, a 24-hour cooldown period applies before automatic re-enablement is 
 
 ### A4. Kill Switch (Implemented)
 
-A manual last-resort mechanism for humans to immediately halt all operations.
-
-```bash
-ssh vault && touch /tmp/vault-kill
-```
-
-Detected on the next health check (every 5 seconds), triggering the full emergency exit sequence for all positions.
+A manual last-resort mechanism for humans to immediately halt all operations. Detected on the next health check (every 5 seconds), triggering the full emergency exit sequence for all positions.
 
 ## B. Decision
 
