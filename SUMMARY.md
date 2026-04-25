@@ -20,6 +20,7 @@
 * [Backtest](vault/backtest.md)
 * [AI Support](vault/ai-support.md)
 * [Risk & Security](vault/risk-and-security.md)
+* [Emergency Response](vault/emergency-response.md)
 * [Transparency](vault/transparency.md)
 * [Fees & How to Use](vault/fees-and-usage.md)
 * [FAQ & Glossary](vault/faq-and-glossary.md)
