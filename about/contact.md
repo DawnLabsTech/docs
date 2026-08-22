@@ -11,7 +11,6 @@
 ## GitHub
 
 - **Organization**: [github.com/DawnLabsTech](https://github.com/DawnLabsTech)
-- **Vault (Bot / Backtest / Dashboard)**: [github.com/DawnLabsTech/vault](https://github.com/DawnLabsTech/vault)
 
 ## Design Kit
 
@@ -21,6 +20,6 @@ Logos, colors, and brand assets for press and partners.
 
 ## VIP Kickback Program
 
-Fee kickback program for VIP depositors.
+Commission kickback program for large-scale stakers.
 
 - **Apply**: [Google Form](https://forms.gle/Qx6hg59sM5Jea4Pm7)

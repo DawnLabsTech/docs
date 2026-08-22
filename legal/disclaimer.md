@@ -1,44 +1,43 @@
 # Disclaimer
 
-**Last updated: March 2026**
+**Last updated: August 2026**
 
 ## General Disclaimer
 
-Dawn Vault is an experimental decentralized finance (DeFi) product operated by Dawn Labs. By using Dawn Vault, you acknowledge and accept the following:
+Dawn Labs provides Solana validator operations, staking, and related advisory services. By using our services or relying on this documentation, you acknowledge and accept the following:
 
 ### No Investment Advice
 
-Nothing in this documentation or on the Dawn Vault platform constitutes financial, investment, legal, or tax advice. The information provided is for informational purposes only. You should consult with qualified professionals before making any investment decisions.
+Nothing in this documentation or on any Dawn Labs platform constitutes financial, investment, legal, or tax advice. The information provided is for informational purposes only. You should consult with qualified professionals before making any investment decisions.
 
 ### No Guarantee of Returns
 
 - Past performance does not guarantee future results
 - Advertised APY figures are estimates based on historical data and current market conditions
 - Actual returns may be higher or lower than projected
-- Loss of deposited funds is possible
-- The Yield Smoothing Reserve does not guarantee any minimum return
+- Loss of staked or deposited funds is possible
 
 ### Risk Acknowledgment
 
-By depositing into Dawn Vault, you acknowledge that you understand and accept the risks described in our [Risk & Security](../vault/risk-and-security.md), including but not limited to:
+By using our services, you acknowledge that you understand and accept the risks involved, including but not limited to:
 
 - Smart contract vulnerabilities
-- Market and funding rate risk
-- Liquidation risk
-- Exchange and counterparty risk
+- Market and interest rate risk
+- Liquidation risk in leveraged staking strategies
+- LST depeg and liquidity risk
 - Oracle manipulation risk
 - Operational and infrastructure risk
-- Liquidity risk
+- Validator performance, downtime, and slashing-related risk
 - Regulatory risk
 - Solana network risk
 
-### Experimental Software
+### Third-Party Protocols
 
-Dawn Vault is experimental software. The smart contracts, while built on audited frameworks, may contain bugs or vulnerabilities. You should not deposit more than you can afford to lose.
+Some strategies described in this documentation rely on third-party protocols. Dawn Labs does not operate or control these protocols and is not responsible for their performance, security, or availability.
 
 ### Non-Custodial Nature
 
-Dawn Vault operates on a non-custodial basis. While this provides security benefits, it also means:
+Dawn Labs' staking services operate on a non-custodial basis. While this provides security benefits, it also means:
 
 - You are solely responsible for the security of your wallet and private keys
 - Lost private keys cannot be recovered
@@ -46,25 +45,25 @@ Dawn Vault operates on a non-custodial basis. While this provides security benef
 
 ### Regulatory Status
 
-Dawn Vault is not registered with or approved by any financial regulatory authority. The regulatory status of DeFi products is uncertain and evolving. Users are responsible for ensuring their use of Dawn Vault complies with applicable laws in their jurisdiction.
+Dawn Labs is not registered with or approved by any financial regulatory authority. The regulatory status of staking and DeFi products is uncertain and evolving. Users are responsible for ensuring their use of our services complies with applicable laws in their jurisdiction.
 
 ### Limitation of Liability
 
 To the maximum extent permitted by law, Dawn Labs and its contributors shall not be liable for any direct, indirect, incidental, special, consequential, or exemplary damages arising from:
 
-- Use of or inability to use Dawn Vault
-- Loss of funds deposited in Dawn Vault
+- Use of or inability to use our services
+- Loss of staked or deposited funds
 - Unauthorized access to or alteration of your data
 - Any third-party conduct or content
 
 ### Changes
 
-Dawn Labs reserves the right to modify vault parameters, strategies, fee structures, and these terms at any time. Significant changes will be communicated through official channels.
+Dawn Labs reserves the right to modify service parameters, strategies, fee structures, and these terms at any time. Significant changes will be communicated through official channels.
 
 ### Jurisdiction
 
-Some jurisdictions may restrict access to DeFi products. It is your responsibility to ensure you are legally permitted to use Dawn Vault in your jurisdiction.
+Some jurisdictions may restrict access to staking or DeFi products. It is your responsibility to ensure you are legally permitted to use our services in your jurisdiction.
 
 ---
 
-*By using Dawn Vault, you acknowledge that you have read, understood, and agree to this disclaimer.*
+*By using Dawn Labs' services, you acknowledge that you have read, understood, and agree to this disclaimer.*

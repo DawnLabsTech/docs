@@ -2,7 +2,7 @@
 
 **Your Solana Yield Partner**
 
-Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset Treasury), lending protocols, traditional finance firms, and high-net-worth individuals. We combine deep validator infrastructure expertise with DeFi yield optimization to deliver institutional-grade returns.
+Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset Treasury), lending protocols, traditional finance firms, and high-net-worth individuals. We combine deep validator infrastructure expertise with staking yield optimization to deliver institutional-grade returns.
 
 ## Services
 
@@ -11,7 +11,6 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 | Service | Description | Status |
 |---------|-------------|--------|
 | **[SOL Staking](about/services.md#sol-staking)** | Native Staking, LST Staking, Multiple Staking (0% commission + kickback for VIPs) | Live |
-| **[Dawn Vault (USDC)](vault/overview.md)** | Automated yield vault: Kamino Multiply + lending + delta-neutral (9-16%+ APY) | Phase 1 Active |
 
 ### Consulting
 
@@ -44,4 +43,4 @@ Dawn Labs is a **Solana operations partner** for exchanges, DATs (Digital Asset 
 
 ---
 
-> **Disclaimer**: Dawn Vault is an experimental DeFi product. Past performance does not guarantee future results. Please review our [Risk & Security](vault/risk-and-security.md) and [Disclaimer](legal/disclaimer.md) before depositing.
+> **Disclaimer**: Staking and leveraged staking strategies involve risk. Past performance does not guarantee future results. Please review our [Disclaimer](legal/disclaimer.md) before using our services.
